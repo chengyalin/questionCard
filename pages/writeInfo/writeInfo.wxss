@@ -1,0 +1,12 @@
+/* pages/writeInfo/writeInfo.wxss */
+ page {display: block;min-height: 100%;background-color: #3686ff;}
+.bottombg{display: block;width: 630rpx;height: 233rpx;position: fixed;left: 0;bottom: 0;z-index: -1;}
+
+.writeInfoBox{background-color: #fff;border-radius: 10px;margin: 50rpx;padding: 40rpx;}
+
+.writeName{position: relative;}
+.inputStyle{border-bottom: 1px solid #f0f0f0;font-size: 28rpx;padding: 20rpx 0 20rpx 100rpx;}
+.leftIcon{display: block;width: 60rpx;height: 60rpx;position: absolute;left: 0;top:16rpx;}
+
+.sureBtn{height: 70rpx;line-height: 70rpx;color: #fff;background-color: #3686ff;border: 1px solid #3686ff;margin-top: 50rpx;font-size: 28rpx;border-radius: 10px;}
+.sureBtn.disabled{color:#000;background-color: #c3c3c3;border:1px solid #c3c3c3;pointer-events: none;cursor: default;}

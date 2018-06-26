@@ -1,0 +1,78 @@
+<!--pages/question/question.wxml-->
+<view class='containerBox'>
+  <view class='questionVariety'>
+    <text class='questionType'>{{objList.question_type == '1' ? '单选':'多选'}}题</text>
+    <view class='allQuesstion' bindtap='jumpToAnswerCard'>
+      <image class='questionIcon' src='/images/answerIcon.png'></image> {{meta.page}}/{{meta.total_page}}
+    </view>
+  </view>
+  <view class='questionMain'>
+  <!-- 单选 -->
+    <view class='questionBox' bindtap='singleAnswerCheck' hidden="{{objList.question_type == '1' ? false : true}}">
+       <view class='question'>{{meta.page}}.{{objList.title}}</view> 
+      <view class="answer {{selectedAAnswer?'active':''}}" id="A">
+        <text class='choose' id="A">A</text>
+        <text class='chooseWord' id="A">{{objList.select_a}}</text>
+      </view>
+      <view class="answer {{selectedBAnswer?'active':''}}" id='B'>
+        <text class='choose' id='B'>B</text>
+        <text class='chooseWord' id='B'>{{objList.select_b}}</text>
+      </view>
+      <view  class="answer {{selectedCAnswer?'active':''}}" id='C'>
+        <text class='choose' id='C'>C</text>
+        <text class='chooseWord' id='C'>{{objList.select_c}}</text>
+      </view>
+      <view class="answer {{selectedDAnswer?'active':''}}" id='D'>
+        <text class='choose' id='D'>D</text>
+        <text class='chooseWord' id='D'>{{objList.select_d}}</text>
+      </view>
+    </view>
+      <!-- 多选 -->
+    <view class='questionBox' bindtap='multipleAnswerCheck' hidden="{{objList.question_type == '2' ? false : true}}">
+       <view class='question'>{{meta.page}}.{{objList.title}}</view> 
+      <view class="answer {{selectedAAnswer?'active':''}}" id="A">
+        <text class='choose' id="A">A</text>
+        <text class='chooseWord' id="A">{{objList.select_a}}</text>
+      </view>
+      <view class="answer {{selectedBAnswer?'active':''}}" id='B'>
+        <text class='choose' id='B'>B</text>
+        <text class='chooseWord' id='B'>{{objList.select_b}}</text>
+      </view>
+      <view  class="answer {{selectedCAnswer?'active':''}}" id='C'>
+        <text class='choose' id='C'>C</text>
+        <text class='chooseWord' id='C'>{{objList.select_c}}</text>
+      </view>
+      <view class="answer {{selectedDAnswer?'active':''}}" id='D'>
+        <text class='choose' id='D'>D</text>
+        <text class='chooseWord' id='D'>{{objList.select_d}}</text>
+      </view>
+    </view>
+    <view class='btnBox'>
+      <!-- 收藏 -->
+      <view class='collect'>
+        <image class="collectIcon {{collectShow?'show':'hidden'}}" catchtap='onCollectionTapOK' src="/images/collection1.png"></image>
+        <image class="collectIcon {{collectShowNo?'show':'hidden'}}" catchtap='onCollectionTapNo' src="/images/collection2.png"></image>  
+      </view>
+      <!-- <button class='preBtn' bindtap='preBtn' hidden='{{meta.prev === null ? true : false}}'>上一题</button>
+      <button class='nextBtn' bindtap='nextBtn' hidden='{{meta.next === null ? true : false}}'>下一题</button> -->
+      <button class='preBtn' bindtap='preBtn'>上一题</button>
+      <button class='nextBtn' bindtap='nextBtn'>下一题</button>
+    </view>
+  </view>
+
+    <!-- 最后一题写完了弹出框 交卷 -->
+    <view  class="{{popupBox?'show':'hidden'}}">
+        <view class='mask'></view>
+        <view class='popupMain'>
+          <view class='popupTop'>
+            <view class='popupTitle'>提示</view>
+            <view class='popupWord'>是否交卷？</view>
+          </view>
+          <view class='twoBtn'>
+            <button class='leftBtn' bindtap='popupCancel'>取消</button>
+            <button class='rightBtn' bindtap='jumpToStart'>确定</button>
+          </view>
+        </view>
+    </view> 
+
+</view>

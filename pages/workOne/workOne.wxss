@@ -1,0 +1,10 @@
+/* pages/workOne/workOne.wxss */
+
+ page {display: block;min-height: 100%;background-color: #3686ff;}
+.workMain{padding: 60rpx 40rpx 0 0;}
+.questionBox{background-color: #fff; float: left;width: 310rpx;height: 160rpx;text-align: center;border-radius: 6px;margin-bottom: 40rpx;margin-left: 40rpx;}
+.questionBox .name{display: block; font-size: 34rpx;color: #3686ff;margin-top: 30rpx;margin-bottom: 10rpx;}
+.questionBox .people{display:block;font-size: 30rpx;color: #F7DE5A;}
+
+
+.bottombg{display: block;width: 630rpx;height: 233rpx;position: fixed;left: 0;bottom: 0;z-index: -1;}

@@ -1,0 +1,28 @@
+/* pages/collectIionDetailResult/collectionDetailResult.wxss */
+.questionMain{padding: 40rpx;}
+
+.questionVariety{}
+.questionType{}
+.allQuesstion{width:300rpx;float: right;text-align: right;}
+.questionIcon{display: inline-block;width: 40rpx;height: 40rpx;}
+
+.questionBox{}
+.question{margin: 30rpx 0;}
+.answer{height: 60rpx;line-height: 60rpx;margin:30rpx 0; }
+.answer.active .choose{background-color: #2AABE5;color: #fff;border-radius: 50%;}
+.choose{display: inline-block;width: 60rpx;height: 60rpx;line-height: 60rpx;margin-right: 3px;text-align: center;font-size: 18px;}
+.chooseWord{color: #6c6c6c;font-size: 16px;}
+
+.btnBox{border-top: 1px solid #f0f0f0;margin: 20rpx 0;padding: 30rpx 0;}
+.rightResult{}
+.rightChoose{color: #2AABE5;}
+.preBtn{display: inline-block; width: 180rpx;height: 60rpx;line-height: 60rpx; font-size: 30rpx;border: 1px solid #2AABE5;background-color: #fff; color: #2AABE5;border-radius: 22px;}
+.nextBtn{display: inline-block;width: 180rpx;height: 60rpx;line-height: 60rpx; font-size: 30rpx;border: 1px solid #2AABE5;background-color: #fff; color: #2AABE5;border-radius: 22px;margin: 0 38rpx;}
+
+.collect{color:#333;display: inline-block;margin-left: 30rpx;float: right;}
+.collect .collectNo{display: inline-block;width: 60rpx;height: 60rpx;}
+.collect .collectok{display: none;width: 60rpx;height: 60rpx;}
+
+.collect.active{}
+.collect.active .collectNo{display: none;width: 60rpx;height: 60rpx;}
+.collect.active .collectok{display: inline-block;width: 60rpx;height: 60rpx;}

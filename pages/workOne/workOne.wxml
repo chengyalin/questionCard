@@ -1,0 +1,35 @@
+<!--pages/workOne/workOne.wxml-->
+<view class='containerBox'>
+  <view class='workMain'>
+    <view class='questionBox' bindtap="jumpToQuestion" data-id='{{item.section_id}}' wx:for="{{workList}}" wx:key="workList" wx:for-index="index" wx:for-item="item">
+      <text class='name'>{{item.title}}</text>
+      <text class='people'>{{item.status}}</text>
+    </view>
+
+    <!-- 底部背景 -->
+    <image class='bottombg' src='/images/bottombg.png'></image>
+
+    <!-- 底部导航 -->
+    <view class='footerBar'>
+      <view class='tabOne active' bindtap='jumpToWorkOne'><image src='/images/danyuan.png' class='footTabIcon'></image><view class='tabWord'>单元</view></view>
+      <view class='tabOne' bindtap='jumpToCollection'><image src='/images/shoucangGray.png' class='footTabIcon'></image><view class='tabWord'>收藏</view></view>
+      <view class='tabOne' bindtap='jumpToScore'><image src='/images/chengjiGray.png' class='footTabIcon'></image><view class='tabWord'>成绩</view></view>
+    </view>
+  </view>
+
+    <!-- 弹出框 -->
+      <view  hidden="{{popupBoxShow}}">
+        <view class='mask'></view>
+        <view class='popupMain'>
+          <view class='popupTop'>
+            <view class='popupTitle'>提示</view>
+            <view class='popupWord'>本题要求一次性做完，中途退出成绩作废，一共150题，预计用时1个小时。</view>
+          </view>
+          <view class='twoBtn'>
+            <button class='leftBtn' bindtap='popupCancel'>未准备好</button>
+            <button class='rightBtn' bindtap='jumpToStart'>确认开始</button>
+          </view>
+        </view>
+    </view>  
+
+</view>

@@ -1,0 +1,19 @@
+<!--pages/myScoreCard/myScoreCard.wxml-->
+<view class='containerBox'>
+  <image class='cardBg' src='/images/chengjidan.png'></image>
+  <view class='myScoreCardBox'>
+    <image src='/images/topZhang_03.jpg' class='title'></image>
+    <view class='userName'>姓名：程程</view>
+    <view class='userIdCard'>省份证：11111111111</view>
+    <view class='graduate'>学生信息学生信息学生信息学生信息学生信息学生信息学生信息学生信息学生信息学生信息学生信息学生信息</view>
+    <image src='/images/zhang.jpg' class='zhang'></image>
+    <view class='ScoreBtn'>
+      <view class='shareMyFrend'>
+        <image class='shareMyFrendImg' src='/images/sharebtn.jpg'></image>
+      </view>
+      <view class='saveAlbum' bindtap='saveAlbun'>
+        <image class='saveAlbumImg' src='/images/savebtn.jpg'></image>
+      </view>
+    </view>
+  </view>
+</view>

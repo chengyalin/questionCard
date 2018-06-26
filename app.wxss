@@ -1,0 +1,48 @@
+/**app.wxss**/
+/* .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}  */
+
+.containerBox {
+
+}
+ /* page {display: block;min-height: 100%;background-color: #3686ff;}
+.bottombg{display: block;width: 630rpx;height: 233rpx;position: fixed;left: 0;bottom: 0;z-index: -1;} */
+
+/* 底部导航 */
+.footerBar{width: 100%; height: 100rpx;line-height: 100rpx;position: fixed;left: 0;bottom: 0;border-top: 1px solid #f0f0f0;z-index: 100;background-color:#fff; }
+.tabOne{float: left; width: 33.3%;text-align: center;}
+.footTabIcon{display: block;width: 50rpx;height:50rpx; margin: 10rpx auto;}
+.tabWord{color: #b2b7bb;font-size: 30rpx;height: 30rpx;line-height: 30rpx;}
+.tabOne.active .tabWord{color: #7fd4ff;}
+
+/* 弹出框 */
+.popupBox{}
+.mask{width: 100%;height: 100%;background-color: #000;opacity: .8;position: fixed;left: 0;top:0;z-index: 101;}
+.popupMain{width: 600rpx;background-color: #fff;border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 102;}
+
+.popupMain .popupTop{background-color: #3686ff;padding: 40rpx;border-radius: 10px 10px 0 0;}
+.popupMain .popupTitle{text-align: center;line-height: 100rpx;font-size: 50rpx;color: #fff;}
+.popupMain .popupWord{text-align: center;line-height: 60rpx;font-size: 40rpx;color: #fff;}
+
+.popupMain .twoBtn{}
+.popupMain .leftBtn{width: 180rpx;height: 70rpx;line-height: 70rpx;font-size: 30rpx; border: 1px solid #3686ff;float: left;margin: 40rpx 0 40rpx 50rpx;color: #3686ff;background-color: #fff;border-radius: 14px;}
+.popupMain .rightBtn{width: 180rpx;height: 70rpx;line-height: 70rpx;font-size: 30rpx;border: 1px solid #3686ff;float:right;margin: 40rpx 50rpx 40rpx 0;color: #fff;background-color: #3686ff;border-radius: 14px;}
+
+.show{display:block;}
+.hidden{display:none;}
+
+/* 没有成绩，没有收藏的状态 */
+.noDataState{}
+.noDataState .noStateImg{display: block; width: 400rpx;height: 400rpx;margin: 200rpx auto 0;}
+.noDataState .info{font-size: 38rpx;color: #adadad;text-align: center;height: 40rpx;line-height: 40rpx;}

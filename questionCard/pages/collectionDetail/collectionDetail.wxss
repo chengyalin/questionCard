@@ -1,0 +1,15 @@
+/* pages/collectionDetail/collectionDetail.wxss */
+
+.DetailBox{padding: 0 50rpx;}
+.chapter{font-size: 40rpx;height: 80rpx;line-height: 80rpx;margin-top: 30rpx;}
+.questionList{border-bottom: 1px solid #f0f0f0;padding:30rpx 0 100rpx 0;position: relative;}
+.question{font-size: 36rpx;line-height: 60rpx;}
+
+/* 收藏 */
+.collect{color:#333;display: inline-block;position: absolute;bottom: 10rpx;right: 0;}
+.collect .collectNo{display: inline-block;width: 60rpx;height: 60rpx;}
+.collect .collectok{display: none;width: 60rpx;height: 60rpx;}
+
+.collect.active{}
+.collect.active .collectNo{display: none;width: 60rpx;height: 60rpx;}
+.collect.active .collectok{display: inline-block;width: 60rpx;height: 60rpx;}

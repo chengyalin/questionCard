@@ -1,0 +1,5 @@
+/* pages/myErrorPage/myErrorPage.wxss */
+.myErrorPageBox{padding: 0 50rpx;}
+.chapter{font-size: 40rpx;height: 80rpx;line-height: 80rpx;margin-top: 30rpx;}
+.questionList{border-bottom: 1px solid #f0f0f0;padding:30rpx 0 40rpx 0;position: relative;}
+.question{font-size: 36rpx;line-height: 60rpx;}

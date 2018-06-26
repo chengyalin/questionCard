@@ -1,0 +1,55 @@
+<!--pages/myScore/myScore.wxml-->
+<view class='containerBox'>
+  <view class='mySoreBox'>
+    <!-- 用户信息 -->
+    <view class='getUserInfoBox'>
+      <view class='userInfoBox'>
+        <image bindtap="bindViewTap" class="userinfoAvatar" src="/images/navself.png" mode="cover"></image>
+        <view class="userinfoNickname">名字</view>
+        <view class='progressBar'>
+          <text class='rightPrcent'>正确率</text>
+          <progress percent="{{completePercent}}" color="#f7de5a" backgroundColor='#fff' active stroke-width="12" class='showRadius'/>
+          <text class='showInfo'>{{completePercent}}%</text>
+          </view>
+      </view>
+    </view>
+    <!-- 查看成绩 -->
+    <view class='checkScoreBox' bindtap="jumpToMyScoreCheck">
+      <view class='ckWord'>
+        <image class='scoreImg' src='/images/cj1.jpg'></image>
+        <view class='ckScore'>查看成绩</view>
+        <view class='ckGrade'>这里可以查各章节分数</view>
+      </view>
+
+    </view>
+     <!-- 打印成绩 -->
+    <view class='checkScoreBox checkScoreBoxR' bindtap="popupBoxShow">
+      <view class='ckWord'>
+        <image class='scoreImg' src='/images/cj2.jpg'></image>
+        <view class='ckScore'>打印成绩</view>
+        <view class='ckGrade'>这里可以生成成绩打印单</view>
+      </view>
+    </view>
+    <!-- 底部导航 -->
+    <view class='footerBar'>
+      <view class='tabOne' bindtap='jumpToWorkOne'><image src='/images/danyuanGray.png' class='footTabIcon'></image><view class='tabWord'>单元</view></view>
+      <view class='tabOne' bindtap='jumpToCollection'><image src='/images/shoucangGray.png' class='footTabIcon'></image><view class='tabWord'>收藏</view></view>
+      <view class='tabOne  active' bindtap='jumpToScore'><image src='/images/chengji.png' class='footTabIcon'></image><view class='tabWord'>成绩</view></view>
+    </view>
+    <!-- 弹出框 -->
+    <view  class="{{popupBox?'show':'hidden'}}">
+        <view class='mask'></view>
+        <view class='popupMain'>
+          <view class='popupTop'>
+            <view class='popupTitle popupTitle2'>提示</view>
+            <view class='popupWord popupWord2'>生成成绩单需要填写个人详细资料</view>
+          </view>
+          <view class='twoBtn'>
+            <button class='leftBtn' bindtap='popupCancel'>取消</button>
+            <button class='rightBtn' bindtap='jumpToWriteInfo'>去填写</button>
+          </view>
+        </view>
+    </view>
+
+  </view>
+</view>

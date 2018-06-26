@@ -1,0 +1,16 @@
+<!--pages/writeInfo/writeInfo.wxml-->
+<view class='containerBox'>
+  <view class='writeInfoBox'>
+    <view class='writeName'>
+      <input type="text" placeholder="请输入姓名" class='inputStyle' />
+      <image src='/images/login1.png' class='leftIcon'></image>
+    </view>
+    <view class='writeName writeIdCard'>
+      <input type="idcard" placeholder="请输入身份证号码"  class='inputStyle' />
+      <image src='/images/login2.png' class='leftIcon'></image>      
+    </view>
+    <button class='sureBtn' bindtap='jumpToMyScoreCard'>确认</button>
+  </view>
+      <!-- 底部背景 -->
+    <image class='bottombg' src='/images/bottombg.png'></image>
+</view>

@@ -1,0 +1,10 @@
+<!--pages/home/home.wxml-->
+  <view class='containerBox'>
+    <view class='sureStarBox' >
+      <view class='pormpt'>提示</view>
+      <view class='warmTip'>你现在可以进行单元测试哦</view>
+      <button class='sureBtn' bindtap="jumpToWorkOne">开始测试</button>
+    </view>
+      <!-- 底部背景 -->
+    <image class='bottombg' src='/images/bottombg.png'></image>
+  </view>

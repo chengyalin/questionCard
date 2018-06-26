@@ -1,0 +1,5 @@
+/* pages/workOne/workOne.wxss */
+.workMain{padding: 60rpx 40rpx 0 0;}
+.questionBox{border: 0.02rem dashed #0aadfe;float: left;width: 310rpx;height: 160rpx;text-align: center;border-radius: 6px;margin-bottom: 40rpx;margin-left: 40rpx;}
+.questionBox .name{display: block; font-size: 44rpx;color: #2bace3;margin-top: 30rpx;margin-bottom: 10rpx;}
+.questionBox .people{display:block;font-size: 30rpx;color: #14d594;}

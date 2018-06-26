@@ -1,0 +1,8 @@
+<!--pages/answerCard/answerCard.wxml-->
+<view class='containerBox padBtm'>
+  <view class='title'>答题卡</view>
+    <view class='answerCardBox'>
+      <view class='titleNum {{titleNums ? "alreadyOK" : ""}}' wx:for='{{questionStatus}}' wx:for-item='titleNums' wx:for-index='index' wx:key='*this' id='{{index+1}}' bindtap='jumpToQuestion'>{{index+1}}</view>
+    </view>
+<button class='submitBtn' bindtap='jumpToAnswerCardResult'>交卷并查看结果</button>
+</view>

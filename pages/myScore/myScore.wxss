@@ -1,0 +1,29 @@
+/* pages/myScore/myScore.wxss */
+
+.mySoreBox{width: 100%;height: auto;overflow: hidden;}
+
+.getUserInfoBox{background-color: #3686ff;padding: 50rpx 10rpx;}
+
+.userInfoBox {width: 100%; }
+.userinfoAvatar {display: block; width: 130rpx;height: 130rpx;margin:0 auto;border-radius: 50%;}
+.userinfoNickname {text-align: center;font-size: 28rpx;color: #fff;margin: 30rpx auto;}
+.progressBar{padding:20rpx 120rpx 20rpx 120rpx;position: relative;}
+.rightPrcent{position: absolute;left: 10rpx;top: 12rpx;color: #fff;font-size: 30rpx;}
+.showRadius{color: #fff;border-radius: 100px;overflow:hidden;}
+.showInfo{position: absolute;right: 10rpx;top: 14rpx;color: #fff;font-size: 30rpx;}
+
+/* 查看成绩 */
+.checkScoreBox{width:330rpx;height: 424rpx; float: left; overflow: hidden; background: #fff;margin: 40rpx 30rpx;padding: 20rpx 0;border-radius:20px;
+box-shadow:13px 4px 51px rgba(54,134,255,0.13);}
+
+.ckWord{width: 330rpx;float: left;}
+.ckScore{font-size: 30rpx;color: #000;text-align: center;}
+.ckGrade{font-size: 24rpx;color: #ADADAD;text-align: center;margin-top: 16rpx;}
+.scoreImg{display: block;width: 310rpx;height: 240rpx;margin: 30rpx auto;}
+
+/* 打印成绩 */
+.checkScoreBox.checkScoreBoxR{float: right;margin-left: 0;}
+
+/* 弹窗覆盖公用样式 */
+.popupTitle.popupTitle2{font-size: 36rpx;}
+.popupWord.popupWord2{font-size: 28rpx;}

@@ -1,0 +1,25 @@
+/* pages/myScoreCheck/myScoreCheck.wxss */
+
+.ckMyScore{padding: 50rpx;}
+.chapterBox{width: 600rpx;margin-bottom: 30rpx;padding: 20rpx 30rpx; border-radius: 5px;position: relative;background-color: #3686ff;height: auto;overflow: hidden;}
+
+.imgWordBox{width: 140rpx;height: 140rpx;float: left;background-color: #fff;border-radius: 100%;}
+.leftImgOK{}
+.pass{font-size: 30rpx;color: #3686ff;line-height: 140rpx;display:block; text-align: center;}
+
+.chapterR{width: 400rpx;float: right;}
+.chapterName{font-size: 32rpx;color: #fff;}
+.chapter{}
+.chapterInfo{}
+
+.allWordInfo{margin-top: 30rpx;}
+.rightWord{font-size: 28rpx;color: #ffd93b;}
+.allWord{font-size: 28rpx;color: #fff;}
+
+
+/* 不及格 */
+.chapterBox.Nopass{background-color: #f79795;}
+.chapterBox.Nopass .chapterName{}
+.chapterBox.Nopass .chapter{}
+.chapterBox.Nopass .chapterInfo{}
+.chapterBox.Nopass .pass{color: #f79795;}

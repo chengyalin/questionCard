@@ -1,0 +1,4 @@
+<!--pages/home/home.wxml-->
+  <view class='containerBox'>
+  <image class="homebg" src="/images/home-bg.jpg"  bindtap="jumpToWorkOne">  </image>  
+  </view>

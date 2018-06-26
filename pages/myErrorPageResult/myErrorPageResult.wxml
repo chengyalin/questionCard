@@ -1,0 +1,72 @@
+<!--pages/myErrorPageResult/myErrorPageResult.wxml-->
+<view class='containerBox'>
+
+    <view class='questionVariety'>
+      <text class='questionType'>单选题</text>
+      <view class='allQuesstion'> 12/150</view>
+    </view>
+
+  <view class='questionMain'>
+    <view class='questionBox'>
+      <view class='question'>听觉的感受器是（   ）。</view>
+      <view class='answer active'>
+        <text class='choose'>A</text>
+        <text class='chooseWord'>听神经1</text>
+      </view>
+      <view class='answer'>
+        <text class='choose'>B</text>
+        <text class='chooseWord'>听神经2</text>
+      </view>
+      <view class='answer'>
+        <text class='choose'>C</text>
+        <text class='chooseWord'>听神经3</text>
+      </view>
+      <view class='answer'>
+        <text class='choose'>D</text>
+        <text class='chooseWord'>听神经4</text>
+      </view>
+    </view>
+    <view class='btnBox'>
+      <text class='rightResult'>正确答案 <text class='rightChoose'>A</text> </text>
+      <text class='myResult'>您的答案 <text class='rightChooseF'>C</text> </text>
+    </view>
+  </view>
+
+  <!-- 讨论区 -->
+  <view class='discussBox'>
+  
+    <view class='discussAreaBtnArea'>
+        <button class='discussAreaBtn'>讨论区</button>
+        <image src='/images/up.png' class='upIcon'></image>  
+        <image src='/images/down.png' class='downIcon'></image>
+    </view>
+
+    <view class='commentList'>
+      <view class='commentsBox'>
+      <view class='commentsArea'>
+        <view class='leftArea'><image src='/images/navself.png' class='leftUserIcon'></image></view>
+        <view class='rightArea'>
+          <view class='commentInfo'><text class='userName'>张三丰</text> <text class='dataTime'>4天前</text></view>
+          <view class='commentInfoWord'>如果你无法简洁的表达你的想法，那只说明你还不够了解它。-- 阿尔伯特·爱因斯坦</view>
+        </view>
+      </view>
+    </view>
+    <view class='commentsBox'>
+      <view class='commentsArea'>
+        <view class='leftArea'><image src='/images/navself.png' class='leftUserIcon'></image></view>
+        <view class='rightArea'>
+          <view class='commentInfo'><text class='userName'>张三丰</text> <text class='dataTime'>4天前</text></view>
+          <view class='commentInfoWord'>如果你无法简洁的表达你的想法，那只说明你还不够了解它。-- 阿尔伯特·爱因斯坦</view>
+        </view>
+      </view>
+    </view>
+    </view>
+
+    <view class='writeWord'>
+      <!-- <input type='text' class='write' placeholder='发表评论'></input> -->
+      <input type='text' class='write' placeholder-style="color:#000" placeholder="发表评论" />
+    </view>
+
+  </view> 
+
+</view>

@@ -1,0 +1,27 @@
+<!--pages/answerCardResult/answerCardResult.wxml-->
+<view class='containerBox'>
+    <!-- 用户信息 -->
+    <view class='getUserInfoBox'>
+      <view class='userInfoBox'>
+        <!-- 圆形进度条 -->
+        <view class='circleBar'>
+        <view class="wrap">
+            <view class="top">
+                <canvas class="cir" style=' width:106px; height:106px;' canvas-id="canvasArc"></canvas>
+                <view class="centerWord">{{resultComment}}</view>
+            </view>
+        </view>
+      </view>
+        <view class="userinfoNickname">成绩：<text class='score'>{{userScore}}</text> 分</view>
+        <view class='progressBar'>
+          <text class='rightPrcent'>正确率</text>
+          <progress percent="{{completePercent}}" color="#f7de5a" backgroundColor='#e8f1ff' active stroke-width="12" class='showRadius'/>
+          <text class='showInfo'>{{completePercent}}%</text>
+        </view>
+          <button class='myErrorBtn' bindtap='jumpTomyErrorPage'>查看错题</button>
+          <button class='submitBtn' bindtap='jumpToWorkOne'>重新测试</button>
+      </view>
+    </view>
+      <!-- 底部背景 -->
+    <image class='bottombg' src='/images/bottombg.png'></image>
+</view>

@@ -1,0 +1,22 @@
+/* pages/collection/collection.wxss */
+.collectionBox{padding: 0 50rpx;}
+
+.tabNav{width:100%;height:100rpx;display:flex;flex-direction:row;}
+.default{line-height:100rpx;text-align:center;flex:1;color:#000;font-weight:bold;font-size:32rpx;border-bottom: 3px solid #fff;}
+.default text{border-bottom: 3px solid #fff;}
+.NavActive{line-height:100rpx;text-align:center;color:#3686ff;flex:1;font-weight:bold;font-size:32rpx;}
+.NavActive text{border-bottom: 3px solid #3686ff;}
+
+
+.show{display:block;text-align:center;line-height:200rpx;}
+.hidden{display:none;text-align:center;line-height:200px;}
+
+
+.collectionList{}
+.collection{height: 120rpx;line-height: 120rpx;font-size: 38rpx;border-bottom: 1px solid #f0f0f0;clear: both;}
+.chapter{display: inline-block; float:left;font-size: 28rpx;color: #4B4B4B;margin-right: 40rpx;}
+.name{display: inline-block; float:left;font-size: 28rpx;color: #4B4B4B;}
+
+.topicRight{width: 200rpx;float: right;}
+.topicAll{font-size: 22rpx;color: #3686ff;}
+.goCheck{display: inline-block;width: 30rpx;height: 30rpx;float: right;margin-top: 22rpx;padding: 30rpx;}
