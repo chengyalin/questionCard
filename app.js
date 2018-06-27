@@ -13,9 +13,9 @@ App({
   //用户登录请求
   userLogin: function () {
     let that = this;
-    // wx.showLoading({
-    //   title: '正在登录中...',
-    // })
+    wx.showLoading({
+      title: '正在登录中...',
+    })
     wx.login({
       success: function (res) {
         if (res.code) {

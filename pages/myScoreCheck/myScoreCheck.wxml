@@ -1,39 +1,21 @@
 <!--pages/myScoreCheck/myScoreCheck.wxml-->
 <view class='containeerBox'>
   <view class='ckMyScore'>
-    <!-- 及格 -->
-    <view class='chapterBox'>
-
+    <!-- 及格 与不及格状态-->
+    <view class='chapterBox {{ chapterBoxScore? "Nopass" : ""}}'  wx:for="{{chapterScore}}" wx:key="chapterScore" wx:for-index="index" wx:for-item="item">
       <view class='imgWordBox'>
-        <text class='pass'>及格</text>
+        <text class='pass'>{{resultComment}}</text>
       </view>
 
       <view class='chapterR'>
       <view class='chapterName'>
-        <text class='chapter'>第一章节</text>
-        <text class='chapterInfo'>心理咨询</text>
+        <text class='chapterInfo'>{{item.section_title}}</text>
       </view>
       <view class='allWordInfo'>
         <text class='rightWord'>110</text><text class='allWord'>/150</text>
       </view>
       </view>
     </view>
-    <!-- 不及格 -->
-    <view class='chapterBox Nopass'>
 
-      <view class='imgWordBox'>
-        <text class='pass'>不及格</text>
-      </view>
-
-      <view class='chapterR'>
-      <view class='chapterName'>
-        <text class='chapter'>第一章节</text>
-        <text class='chapterInfo'>心理咨询</text>
-      </view>
-      <view class='allWordInfo'>
-        <text class='rightWord'>110</text><text class='allWord'>/150</text>
-      </view>
-      </view>
-    </view>
   </view>
 </view>

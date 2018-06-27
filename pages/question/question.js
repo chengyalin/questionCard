@@ -172,7 +172,7 @@ Page({
 
   onCollectionTapOK: function () {//点收藏
     let that = this;
-    this.setData({
+    that.setData({
       collectShow: false,//没有收藏的图
       collectShowNo: true//收藏的图
     })
@@ -180,7 +180,7 @@ Page({
   },
   onCollectionTapNo: function () {//再点收藏就取消收藏了
     let that = this;
-    this.setData({
+    that.setData({
       collectShow: true,//没有收藏的图
       collectShowNo: false//收藏的图
     })

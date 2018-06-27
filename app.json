@@ -1,33 +1,25 @@
 {
   "pages": [
+    "pages/myErrorPage/myErrorPage",
+    "pages/myErrorPageResult/myErrorPageResult",
+    
+    
+    "pages/myScore/myScore",
+    "pages/myScoreCheck/myScoreCheck",
+    "pages/writeInfo/writeInfo",
+    "pages/myScoreCard/myScoreCard",
+    
+
+
     "pages/home/home",
     "pages/collection/collection",
     "pages/collectionDetail/collectionDetail",
     "pages/collectionDetailResult/collectionDetailResult",
 
-
-
     "pages/workOne/workOne",
     "pages/question/question",
     "pages/answerCard/answerCard",
     "pages/answerCardResult/answerCardResult",
-    
-    
-
-  
-    
-
-    "pages/myScore/myScore",
-    "pages/myScoreCheck/myScoreCheck",
-    "pages/writeInfo/writeInfo",
-    "pages/myScoreCard/myScoreCard",
-
-    "pages/myErrorPage/myErrorPage",
-    "pages/myErrorPageResult/myErrorPageResult",
-
-
-
-    
     
 
 

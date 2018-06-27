@@ -31,39 +31,39 @@ Page({
     switch (true) {
       case completePercent < 60:
         that.setData({
-          resultComment: "渣渣"
+          resultComment: "不及格"
         })
         break;
-      case completePercent >= 60 && completePercent < 70:
+      case completePercent >= 60 && completePercent <= 100:
         that.setData({
-          resultComment: "学弱"
+          resultComment: "及格"
         })
         break;
-      case completePercent >= 70 && completePercent < 80:
-        that.setData({
-          resultComment: "中等"
-        })
-        break;
-      case completePercent >= 80 && completePercent < 90:
-        that.setData({
-          resultComment: "良好"
-        })
-        break;
-      case completePercent >= 90 && completePercent < 95:
-        that.setData({
-          resultComment: "优秀"
-        })
-        break;
-      case completePercent >= 95 && completePercent < 100:
-        that.setData({
-          resultComment: "学霸"
-        })
-        break;
-      case completePercent >= 100:
-        that.setData({
-          resultComment: "学神"
-        })
-        break;
+      // case completePercent >= 70 && completePercent < 80:
+      //   that.setData({
+      //     resultComment: "中等"
+      //   })
+      //   break;
+      // case completePercent >= 80 && completePercent < 90:
+      //   that.setData({
+      //     resultComment: "良好"
+      //   })
+      //   break;
+      // case completePercent >= 90 && completePercent < 95:
+      //   that.setData({
+      //     resultComment: "优秀"
+      //   })
+      //   break;
+      // case completePercent >= 95 && completePercent < 100:
+      //   that.setData({
+      //     resultComment: "学霸"
+      //   })
+      //   break;
+      // case completePercent >= 100:
+      //   that.setData({
+      //     resultComment: "学神"
+      //   })
+      //   break;
     }
   },
 
