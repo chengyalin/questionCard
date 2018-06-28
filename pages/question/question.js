@@ -199,36 +199,7 @@ Page({
     })
   },
 
-  onCollectionTapOK: function () {//点收藏
-    let that = this;
-    let question_id = that.data.objList.question_id;
-    // 测试数据
-    let user_id = 1;
-    let section_id = that.data.section_id;
-    let collectionStatus = that.data.collectionStatus;
-    if (collectionStatus){
-      // 用来删除收藏记录
-      that.setData({
-        collectShow: true,//没有收藏的图
-        collectShowNo: false,//收藏的图
-      })
-    }else{
-      that.setData({
-        collectShow: false,//没有收藏的图
-        collectShowNo: true,//收藏的图
-      })
-      that.getCollection(question_id, user_id, section_id)
-    }
-  },
 
-  onCollectionTapNo: function () {//再点收藏就取消收藏了
-    let that = this;
-    that.setData({
-      collectShow: true,//没有收藏的图
-      collectShowNo: false//收藏的图
-    })
-    that.getCollection(question_id, user_id, section_id)
-  },
 
   preBtn: function () {//上一题
     let that = this;
@@ -418,7 +389,37 @@ Page({
     })
   },
 
+  onCollectionTapOK: function () {//点收藏
+    let that = this;
+    let question_id = that.data.objList.question_id;
+    // 测试数据
+    let user_id = 1;
+    let section_id = that.data.section_id;
+    let collectionStatus = that.data.collectionStatus;
+    if (collectionStatus) {
+      // 用来删除收藏记录
+      that.setData({
+        collectShow: true,//没有收藏的图
+        collectShowNo: false,//收藏的图
+      })
+      that.getCollectionCancel(question_id, user_id, section_id)
+    } else {
+      that.setData({
+        collectShow: false,//没有收藏的图
+        collectShowNo: true,//收藏的图
+      })
+      that.getCollection(question_id, user_id, section_id)
+    }
+  },
 
+  onCollectionTapNo: function () {//再点收藏就取消收藏了
+    let that = this;
+    that.setData({
+      collectShow: true,//没有收藏的图
+      collectShowNo: false//收藏的图
+    })
+    that.getCollectionCancel(question_id, user_id, section_id)
+  },
 
   // 收藏题目
   getCollection: function (question_id,user_id,section_id){
@@ -441,7 +442,27 @@ Page({
       }
     })
   },
-
+  // 收藏题目取消
+  getCollectionCancel: function (question_id, user_id, section_id) {
+    let that = this;
+    var question_id = question_id;
+    let colectionUrl = app.baseUrl + '/bank/bookmark/delete/?question_id=' + question_id + '&user_id=' + user_id + '&section_id=' + section_id
+    wx.request({
+      url: colectionUrl,
+      data: {
+        question_id: 'question_id',
+        user_id: 'user_id',
+        section_id: 1
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({ res})
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

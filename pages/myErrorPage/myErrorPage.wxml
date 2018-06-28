@@ -1,7 +1,7 @@
 <!--pages/myErrorPage/myErrorPage.wxml-->
 <view class='containerBox'>
   <view class='myErrorPageBox' bindtap='jumpToMyErrorPageResult'>
-    <view class='chapter'>第{{section_id}}章</view>
+    <view class='chapter'>章节标题</view>
     <view class='questionList' wx:for='{{logList}}' wx:for-item='logList' wx:key='*this'>
       <text class='question'>{{logList.question_info.title}}</text>
     </view>

@@ -9,7 +9,7 @@
   <view class="{{selected?'show':'hidden'}}">
     <view class='collectionList' bindtap='jumpTocollectionDetail'>
       <view class='collection' wx:for='{{collectionItems}}' wx:for-item='collectionItems' wx:for-index='index' wx:key='*this'>
-        <text class='chapter'>第{{collectionItems.section_id}}章</text>
+        <!-- <text class='chapter'>第{{collectionItems.section_id}}章</text> -->
         <text class='name'>{{collectionItems.title}}</text>
         <view class='topicRight'>
           <text class='topicAll'>共{{collectionItems.bookmark_list.length}}题</text>
@@ -27,7 +27,7 @@
     </view>  -->
     <view class='collectionList' bindtap='jumpToMyErrorPage'>
       <view class='collection' wx:for='{{myErrorPages}}' wx:for-item='myErrorPages' wx:for-index='index' wx:key='*this'>
-        <text class='chapter'>第{{myErrorPages.section_id}}章</text>
+        <!-- <text class='chapter'>第{{myErrorPages.section_id}}章</text> -->
         <text class='name'>{{myErrorPages.title}}</text>
         <view class='topicRight'>
           <text class='topicAll'>共{{myErrorPages.log_list.length}}题</text>

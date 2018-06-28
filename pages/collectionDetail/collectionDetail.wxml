@@ -6,7 +6,7 @@
       <view class='info'>暂无收藏</view>
   </view>    
   <view class='DetailBox' hidden='{{bookmarkList == "" ? true : false}}' bindtap='jumpTocollectionDetailResult'>
-    <view class='chapter'>第{{section_id}}章</view>
+    <view class='chapter'>章节的标题</view>
     <view class='questionList' wx:for='{{bookmarkList}}' wx:for-index='index' wx:for-item='bookmarkList' wx:key='*this' id='{{bookmarkList.id}}'>
       <text class='question'>{{bookmarkList.question_info.title}}</text>
       <view class='collect active' catchtap="togleClassActive">
