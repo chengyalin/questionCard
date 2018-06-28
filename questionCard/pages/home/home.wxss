@@ -1,2 +1,0 @@
-/* pages/home/home.wxss */
-.homebg{display: block;width:750rpx;height: 880rpx;margin-top: 100rpx;}

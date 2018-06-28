@@ -7,9 +7,9 @@
         <image bindtap="bindViewTap" class="userinfoAvatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <view class="userinfoNickname">{{userInfo.nickName}}</view>
         <view class='progressBar'>
-          <text class='rightPrcent'>正确率</text>
-          <progress percent="{{completePercent}}" color="#f7de5a" backgroundColor='#fff' active stroke-width="12" class='showRadius'/>
-          <text class='showInfo'>{{completePercent}}%</text>
+          <text class='rightPrcent'>平均分</text>
+          <progress percent="{{avarageScore}}" color="#f7de5a" backgroundColor='#fff' active stroke-width="12" class='showRadius'/>
+          <text class='showInfo'>{{avarageScore}}分</text>
           </view>
       </view>
     </view>

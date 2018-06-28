@@ -56,7 +56,7 @@
       <!-- <button class='preBtn' bindtap='preBtn' hidden='{{meta.prev === null ? true : false}}'>上一题</button>
       <button class='nextBtn' bindtap='nextBtn' hidden='{{meta.next === null ? true : false}}'>下一题</button> -->
       <button class='preBtn' bindtap='preBtn'>上一题</button>
-      <button class='nextBtn' bindtap='nextBtn'>下一题</button>
+      <button class='nextBtn' bindtap='nextBtn'>{{nextText}}</button>
     </view>
   </view>
 

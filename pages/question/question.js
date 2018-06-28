@@ -17,7 +17,10 @@ Page({
     answerCClicked: false,
     answerDClicked: false,
     collectShow:true,//没有收藏的图显示
-    collectShowNo: false//收藏的图显示
+    collectShowNo: false,//收藏的图显示
+    collectionStatus: false,
+    nextText:'下一题',
+    answerStatus: false,
   },
 
 
@@ -25,6 +28,10 @@ Page({
     let that = this;
     let id = e.target.id;
     console.log(id)
+    that.setData({
+      nextText: '确定',
+      answerStatus: true
+    })
     switch (id) {
       case "A":
         that.setData({
@@ -130,6 +137,28 @@ Page({
         }
         break;
     }
+    // 这里是先拿到每个选项的被选中状态
+    let optionClickedStatus = {
+      answerAClicked: that.data.answerAClicked,
+      answerBClicked: that.data.answerBClicked,
+      answerCClicked: that.data.answerCClicked,
+      answerDClicked: that.data.answerDClicked,
+    };
+    // 判断只要四个选项中的任意一个选项被选中，“下一题”变为“确定”
+    if (optionClickedStatus.answerAClicked ||
+      optionClickedStatus.answerBClicked ||
+      optionClickedStatus.answerCClicked ||
+      optionClickedStatus.answerDClicked) {
+      that.setData({
+        nextText: '确定',
+        answerStatus: true
+      })
+    } else {
+      that.setData({
+        nextText: '下一题',
+        answerStatus: false
+      })
+    }
   },
 
   popupCancel: function () {//弹窗点击未取消
@@ -172,12 +201,26 @@ Page({
 
   onCollectionTapOK: function () {//点收藏
     let that = this;
-    that.setData({
-      collectShow: false,//没有收藏的图
-      collectShowNo: true//收藏的图
-    })
-    that.getCollection(question_id, user_id, section_id)
+    let question_id = that.data.objList.question_id;
+    // 测试数据
+    let user_id = 1;
+    let section_id = that.data.section_id;
+    let collectionStatus = that.data.collectionStatus;
+    if (collectionStatus){
+      // 用来删除收藏记录
+      that.setData({
+        collectShow: true,//没有收藏的图
+        collectShowNo: false,//收藏的图
+      })
+    }else{
+      that.setData({
+        collectShow: false,//没有收藏的图
+        collectShowNo: true,//收藏的图
+      })
+      that.getCollection(question_id, user_id, section_id)
+    }
   },
+
   onCollectionTapNo: function () {//再点收藏就取消收藏了
     let that = this;
     that.setData({
@@ -206,6 +249,12 @@ Page({
   },
   nextBtn: function () {//下一题
     let that = this;
+    // 点击下一题的时候，收藏状态被置回未收藏的状态
+    that.setData({
+      collectionStatus: false,
+      nextText: '下一题',
+      answerStatus: false
+    })
     let optionSelectedStatus = {
       selectedAAnswer: that.data.selectedAAnswer,
       selectedBAnswer: that.data.selectedBAnswer,
@@ -235,6 +284,7 @@ Page({
         popupBox: true
       })
     } else {
+      nextText: '下一题'
       let url = app.baseUrl + next;
       that.getQuestionItem(section_id, url)
     }
@@ -291,7 +341,6 @@ Page({
     })
     let url = app.baseUrl + '/bank/question/query/?page=' + page;
     that.getQuestionItem(section_id, url);
-    that.getCollection(question_id, user_id, section_id);//收藏
   },
 
   getQuestionItem: function (section_id, url) {
@@ -300,7 +349,7 @@ Page({
       url: url, //接口地址
       data: {
         section_id: section_id,
-        //section_id: 3,
+        section_id: 3,
         //page: 1
       },
       header: {
@@ -316,6 +365,8 @@ Page({
         })
         for (let i = 0; i < objectList.length; i++) {
           let objList = objectList[i];
+          // 测试question_type=2时的数据
+          //objList['question_type'] = 2;
           that.setData({
             objList: objList,
           })
@@ -369,7 +420,7 @@ Page({
 
 
 
-  // 收藏
+  // 收藏题目
   getCollection: function (question_id,user_id,section_id){
     let that = this;
     var question_id = question_id;

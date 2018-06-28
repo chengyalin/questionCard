@@ -8,7 +8,7 @@ Page({
   data: {
     userInfo: {},
     popupBox:false,
-    completePercent: '',
+    avarageScore: '',
     resultComment: '',
   },
   popupBoxShow: function () {//弹窗显示
@@ -83,23 +83,49 @@ Page({
     let popupBoxShow = app.globalData.popupBoxShow;
     console.log(popupBoxShow)
     // 页面初始化 options为页面跳转所带来的参数
+    that.getUserScore();
+  },
 
-    let userScore = options.userScore;
-    let totalItems = options.totalCount;
-    let rightItems = userScore / 0.5;
-    //测试数据
-    // let totalItems = 100;
-    // let rightItems = 59;
-    // let userScore = 80;
-    let completePercent = parseInt((rightItems / totalItems) * 100);
-    console.log(completePercent)
-    that.getResultComment(completePercent);
-    that.setData({
-      completePercent: completePercent,
-      userScore: userScore,
+  getUserScore: function(){
+    let that = this;
+    let url = app.baseUrl + '/bank/grade/query/';
+    // 测试数据
+    let user_id = 1;
+    wx.request({
+      url: url,
+      data: {
+        user_id: user_id
+      },
+      success: function(res){
+        console.log(res)
+        console.log(res.data)
+        console.log(res.data.data)
+        let datas = res.data.data;
+        let scores = [];
+        for(let i=0; i<datas.length; i++){
+          let score = parseFloat(datas[i].value);
+          scores.push(score)
+        }
+        console.log("scores:" + scores)
+        let avarageScore = that.handleScores(scores);
+        console.log("avarageScore:" + avarageScore)
+        that.setData({
+          avarageScore: avarageScore
+        })
+      } 
     })
+  },
 
-   
+  handleScores: function (scores){
+    let that = this;
+    let len = scores.length;
+    let sum = 0;
+    for (let i = 0; i < len; i++){
+      sum += scores[i];
+    }
+    console.log("sum:" + sum)
+    let avarageScore = parseFloat(sum/len).toFixed(2);
+    return avarageScore;
   },
 
   /**

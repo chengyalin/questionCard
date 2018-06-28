@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/myErrorPage/myErrorPage",
-    "pages/myErrorPageResult/myErrorPageResult",
-    
+    "pages/question/question",
+    "pages/workOne/workOne",
+   "pages/home/home",
     
     "pages/myScore/myScore",
     "pages/myScoreCheck/myScoreCheck",
@@ -11,17 +11,19 @@
     
 
 
-    "pages/home/home",
+
     "pages/collection/collection",
     "pages/collectionDetail/collectionDetail",
     "pages/collectionDetailResult/collectionDetailResult",
 
-    "pages/workOne/workOne",
-    "pages/question/question",
+
+
+
     "pages/answerCard/answerCard",
     "pages/answerCardResult/answerCardResult",
     
-
+    "pages/myErrorPage/myErrorPage",
+    "pages/myErrorPageResult/myErrorPageResult",
 
     "pages/index/index",
     "pages/logs/logs"
