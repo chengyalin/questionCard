@@ -1,15 +1,16 @@
 {
   "pages": [
-    "pages/home/home",
+    "pages/myScore/myScore",
+    "pages/myScoreCard/myScoreCard",
+
+
     "pages/question/question",
     "pages/workOne/workOne",
-
+   "pages/home/home",
     
-    "pages/myScore/myScore",
+
     "pages/myScoreCheck/myScoreCheck",
     "pages/writeInfo/writeInfo",
-    "pages/myScoreCard/myScoreCard",
-    
 
 
 
