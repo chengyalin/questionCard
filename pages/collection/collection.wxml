@@ -13,7 +13,7 @@
         <text class='name'>{{collectionItems.title}}</text>
         <view class='topicRight'>
           <text class='topicAll'>共{{collectionItems.bookmark_list.length}}题</text>
-          <image class='goCheck' src='/images/goto.png' id='{{index}}' data-section_id='{{collectionItems.section_id}}'></image>
+          <image class='goCheck' src='/images/goto.png' id='{{index}}' data-section_id='{{collectionItems.section_id}}' data-title='{{collectionItems.title}}'></image>
         </view>
       </view>
     </view>
@@ -31,7 +31,7 @@
         <text class='name'>{{myErrorPages.title}}</text>
         <view class='topicRight'>
           <text class='topicAll'>共{{myErrorPages.log_list.length}}题</text>
-          <image class='goCheck' src='/images/goto.png' id='{{index}}' data-section_id='{{myErrorPages.section_id}}'></image>
+          <image class='goCheck' src='/images/goto.png' id='{{index}}' data-section_id='{{myErrorPages.section_id}}' data-title='{{myErrorPages.title}}'></image>
         </view>
       </view>
     </view>

@@ -21,8 +21,10 @@ Page({
   * 页面的跳转重新测试
   */
   jumpToWorkOne: function () {
+    let section_id = this.data.section_id;
+    wx.removeStorageSync("questionStatus" + section_id)
     wx.navigateTo({
-      url: '../workOne/workOne'
+      url: '../question/question?section_id=' + section_id
     })
   },
   
@@ -73,12 +75,16 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     let that = this;
+    let section_id = options.section_id;
     let userScore = options.userScore;
     let totalItems = options.totalCount;
     let rightItems = userScore / 0.5;
+    console.log('userScore=' + userScore)
+    console.log('totalItems=' + totalItems)
+    console.log('rightItems=' + rightItems)
     //测试数据
     // let totalItems = 100;
-    // let rightItems = 59;
+    // let rightItems = 2;
     // let userScore = 80;
     let completePercent = parseInt((rightItems / totalItems) * 100);
     console.log(completePercent)
@@ -86,6 +92,7 @@ Page({
     that.setData({
       completePercent: completePercent,
       userScore: userScore,
+      section_id: section_id
     })
     that.showScoreAnimation(rightItems, totalItems);
   },

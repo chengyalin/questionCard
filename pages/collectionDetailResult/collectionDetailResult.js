@@ -5,14 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    selectedAAnswer: false,
+    selectedBAnswer: false,
+    selectedCAnswer: false,
+    selectedDAnswer: false,
+    A: 'A',
+    B: 'B',
+    C: 'C',
+    D: 'D',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let that = this;
+    let index = parseInt(options.index);
+    let totalCount = options.totalCount;
+    let bookmarkList = wx.getStorageSync("bookmarkList");
+    let questionInfo = bookmarkList[index].question_info;
+    // 测试数据
+    // logList[index].question_info['question_type'] = 2;
+    let questionType = bookmarkList[index].question_info.question_type;
+    let rightAnswer = questionInfo.answer;
+    that.setData({
+      index: index,
+      totalCount: totalCount,
+      questionType: questionType,
+      questionInfo: questionInfo,
+      rightAnswer: rightAnswer
+    })
   },
 
   /**

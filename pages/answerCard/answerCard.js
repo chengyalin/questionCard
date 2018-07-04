@@ -12,9 +12,35 @@ Page({
   * 页面的跳转交卷查看结果
   */
   jumpToAnswerCardResult: function () {
-    wx.navigateTo({
-      url: '../answerCardResult/answerCardResult'
+    let that = this;
+    let section_id = that.data.section_id;
+    let user_id = 1;
+    let data = wx.getStorageSync("data");
+    // let finishedItems = that.calculateObjAttrLength(data);
+    let meta = wx.getStorageSync("metaName")
+    console.log(meta)
+    let totalCount = meta['total_count'];
+    console.log(meta.total_count)
+    wx.request({
+      url: app.baseUrl + '/bank/question/check/',
+      data: {
+        data: data,
+        user_id: user_id,
+        section_id: section_id
+      },
+      success: function (res) {
+        // 防止用户按返回键之后答题卡出现空白的情况，所以不能删除
+        // wx.removeStorageSync("questionStatus" + section_id)
+        that.setData({ popupBox: false });
+        console.log(res.data)
+        let userScore = res.data.data;
+        let section_id = that.data.section_id;
+        wx.navigateTo({
+          url: '../answerCardResult/answerCardResult?userScore=' + userScore + '&totalCount=' + totalCount + '&section_id=' + section_id,
+        })
+      }
     })
+
   },
 
   jumpToQuestion: function (e) {

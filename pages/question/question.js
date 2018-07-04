@@ -16,10 +16,9 @@ Page({
     answerBClicked: false,
     answerCClicked: false,
     answerDClicked: false,
-    collectShow:true,//没有收藏的图显示
+    collectShow: true,//没有收藏的图显示
     collectShowNo: false,//收藏的图显示
-    collectionStatus: false,
-    nextText:'下一题',
+    nextText: '下一题',
     answerStatus: false,
   },
 
@@ -222,7 +221,8 @@ Page({
     let that = this;
     // 点击下一题的时候，收藏状态被置回未收藏的状态
     that.setData({
-      collectionStatus: false,
+      collectShow: true,//没有收藏的图显示
+      collectShowNo: false,//收藏的图显示
       nextText: '下一题',
       answerStatus: false
     })
@@ -316,11 +316,16 @@ Page({
 
   getQuestionItem: function (section_id, url) {
     let that = this;
+    wx.showToast({
+      title: '加载中...',
+      icon: 'loading',
+      duration: 500
+    })
     wx.request({
       url: url, //接口地址
       data: {
         section_id: section_id,
-        section_id: 3,
+        // section_id: 3,
         //page: 1
       },
       header: {
@@ -329,11 +334,13 @@ Page({
       success: function (res) {
         let datas = res.data.data;
         let objectList = datas.object_list;
+        console.log("用户获取到的题目objectList:" + objectList)
         let meta = datas.meta;
-        // wx.setStorageSync("meta", meta)
         that.setData({
           meta: meta,
+          objectList: objectList
         })
+        wx.setStorageSync('metaName',meta)
         for (let i = 0; i < objectList.length; i++) {
           let objList = objectList[i];
           // 测试question_type=2时的数据
@@ -342,6 +349,7 @@ Page({
             objList: objList,
           })
         }
+        that.isQuestionCollected(meta, objectList, section_id);
         /*
         这里坑大了，因为wx.request是异步请求，在执行请求的时候，js不会继续等待后台响应，
         而是继续执行下面的代码，所以会出现，后面的代码先执行，然后数据才回来的现象，
@@ -350,9 +358,6 @@ Page({
         that.isQuestionFinished(meta, section_id);
       }
     })
-
-
-    
   },
 
   isQuestionFinished: function (meta, section_id) {
@@ -365,7 +370,7 @@ Page({
     */
     //后面的section_id是区分不同的section_id而得到对应的答题卡情况
     let questionStatus = wx.getStorageSync("questionStatus" + section_id);
-    console.log("questionStatus:" + questionStatus)
+    // console.log("questionStatus:" + questionStatus)
     if (!questionStatus) {
       questionStatus = [];
     }
@@ -378,10 +383,9 @@ Page({
     }
     //这里为了保证用户未答题的情况下，点击查看答题情况，这个时候的答题卡选项均未选中
     wx.setStorageSync("questionStatus" + section_id, questionStatus)
-    console.log("questionStatus:" + questionStatus)
+    // console.log("questionStatus:" + questionStatus)
     that.setData({
       questionStatus: questionStatus,
-      meta: meta,
       selectedAAnswer: false,
       selectedBAnswer: false,
       selectedCAnswer: false,
@@ -395,15 +399,7 @@ Page({
     // 测试数据
     let user_id = 1;
     let section_id = that.data.section_id;
-    let collectionStatus = that.data.collectionStatus;
-    if (!collectionStatus) {
-      that.setData({
-        collectShow: false,//没有收藏的图
-        collectShowNo: true,//收藏的图
-        collectionStatus: true
-      })
-      that.getCollection(question_id, user_id, section_id)
-    }
+    that.getCollection(question_id, user_id, section_id)
   },
 
   onCollectionTapNo: function () {//再点收藏就取消收藏了
@@ -412,55 +408,91 @@ Page({
     // 测试数据
     let user_id = 1;
     let section_id = that.data.section_id;
-    let collectionStatus = that.data.collectionStatus;
-    if (collectionStatus) {
-      // 用来删除收藏记录
-      that.setData({
-        collectShow: true,//没有收藏的图
-        collectShowNo: false,//收藏的图
-        collectionStatus: false
-      })
-      that.getCollectionCancel(question_id, user_id, section_id)
-    }
+    that.getCollectionCancel(question_id, user_id, section_id)
   },
 
   // 收藏题目
-  getCollection: function (question_id,user_id,section_id){
+  getCollection: function (question_id, user_id, section_id) {
     let that = this;
     let colectionUrl = app.baseUrl + '/bank/bookmark/create/?question_id=' + question_id + '&user_id=' + user_id + '&section_id=' + section_id
     wx.request({
       url: colectionUrl,
-      data: {
-        question_id: question_id,
-        user_id: user_id,
-        section_id: section_id
-      },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
         console.log(res.data)
-        that.setData({ res })
+        let collectionItems = res.data.data;
+        console.log("collectionItems:" + collectionItems)
+        let objectList = that.data.objectList;
+        that.handleCollection(collectionItems, objectList);
       }
     })
   },
+
+  // 页面刚加载完成时，只能通过该接口获取用户收藏题目
+  isQuestionCollected: function (meta, objectList, section_id) {
+    let that = this;
+    let url = app.baseUrl + '/bank/bookmark/query/';
+    let user_id = 1;
+    wx.request({
+      url: url,
+      data: {
+        user_id: user_id
+      },
+      success: function (res) {
+        console.log("用户收藏的章节题目：" + res.data.data)
+        let collectionQuestions = res.data.data;
+        for (let i = 0; i < collectionQuestions.length; i++) {
+          let section = collectionQuestions[i].section_id;
+          if (section = section_id) {
+            let collectionList = collectionQuestions[i].bookmark_list;
+            console.log("collectionList:" + collectionList)
+            that.handleCollection(collectionList, objectList);
+            break;
+          }
+        }
+      }
+    })
+  },
+
+  handleCollection: function (collectionList, objectList) {
+    let that = this;
+    let question_id = objectList[0].question_id;
+    console.log("question_id:" + question_id)
+    for (let i = 0; i < collectionList.length; i++) {
+      let collectionItemId = collectionList[i].question_id;
+      console.log("collectionItemId:" + collectionItemId)
+      if (question_id === collectionItemId) {
+        that.setData({
+          collectShow: false,//有收藏的图显示
+          collectShowNo: true,//没有收藏的图显示
+        })
+        break;
+      } else {
+        that.setData({
+          collectShow: true,//有收藏的图显示
+          collectShowNo: false,//没有收藏的图显示
+        })
+      }
+    }
+  },
+
   // 收藏题目取消
   getCollectionCancel: function (question_id, user_id, section_id) {
     let that = this;
     let colectionUrl = app.baseUrl + '/bank/bookmark/delete/?question_id=' + question_id + '&user_id=' + user_id + '&section_id=' + section_id
     wx.request({
       url: colectionUrl,
-      data: {
-        question_id: question_id,
-        user_id: user_id,
-        section_id: section_id
-      },
       header: {
         'content-type': 'application/json'
       },
       success: function (res) {
         console.log(res.data)
-        that.setData({ res})
+        let collectionItems = res.data.data;
+        console.log("collectionItems:" + collectionItems)
+        let objectList = that.data.objectList;
+        that.handleCollection(collectionItems, objectList);
       }
     })
   },

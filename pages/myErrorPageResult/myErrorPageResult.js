@@ -8,28 +8,38 @@ Page({
   data: {
     userInfo: {},
     commentsList: [],
-    upTu: true,
-    downTu: false,
+    commentListAreaShow: true,
+    imgUrl: '/images/up.png',
     commentListArea: true,
-    commentValue: ''
+    commentValue: '',
+    selectedAAnswer: false,
+    selectedBAnswer: false,
+    selectedCAnswer: false,
+    selectedDAnswer: false,
+    A: 'A',
+    B: 'B',
+    C: 'C',
+    D: 'D'
   },
   // 讨论区的显示与隐藏
-  clickUpIcon: function () {
-    var that = this
-    that.setData({
-      upTu: false,
-      downTu: true,
-      commentListArea: false
-    })
+  clickUpDown: function (e) {
+    let that = this;
+    let commentListAreaShow = that.data.commentListAreaShow;
+    if (commentListAreaShow === true) {
+      that.setData({
+        commentListAreaShow: false,
+        imgUrl: '/images/down.png',
+        commentListArea: false
+      })
+    } else {
+      that.setData({
+        commentListAreaShow: true,
+        imgUrl: '/images/up.png',
+        commentListArea: true
+      })
+    }
   },
-  clickDownIcon: function () {
-    var that = this
-    that.setData({
-      upTu: true,
-      downTu: false,
-      commentListArea: true
-    })
-  },
+
   sendMessage: function () {
     var that = this
     that.getUserComments()
@@ -39,17 +49,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
-    that.getCommentsList()
+    let that = this;
+    let index = parseInt(options.index);
+    let totalCount = options.totalCount;
+    let logList = wx.getStorageSync("logList");
+    let questionInfo = logList[index].question_info;
+    let userChoice = logList[index].you_choice;
+    // 测试数据
+    // logList[index].question_info['question_type'] = 2;
+    let questionType = logList[index].question_info.question_type;
+    let rightAnswer = questionInfo.answer;
+    that.setData({
+      index: index,
+      totalCount: totalCount,
+      questionType: questionType,
+      questionInfo: questionInfo,
+      userChoice: userChoice,
+      rightAnswer: rightAnswer
+    })
+    that.getCommentsList();
   },
 
+  //讨论区的评论列表展示
   getCommentsList: function () {
     var that = this;
     let userInfo = app.globalData.userInfo;
     that.setData({
       userInfo: userInfo
     });
-    
+
     wx.request({
       url: app.baseUrl + '/bank/comment/list/', //讨论区留言列表接口地址
       data: {
@@ -60,7 +88,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
-        console.log(res.data)
+        console.log(res.data.data)
         that.setData({ commentsList: res.data.data })
       }
     })

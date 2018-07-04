@@ -6,47 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    chapterScore:[],
-    chapterBoxScore:false,
-    resultComment: ''
-  },
-  getResultComment: function (completePercent) {
-    let that = this;
-    switch (true) {
-      case completePercent < 60:
-        that.setData({
-          resultComment: "不及格",
-          chapterBoxScore:true
-        })
-        break;
-      case completePercent >= 60 && completePercent <= 100:
-        that.setData({
-          resultComment: "及格"
-        })
-        break;
 
-    }
   },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let that = this;
-    // let userScore = options.userScore;
-    // let totalItems = options.totalCount;
-    // let rightItems = userScore / 0.5;
-    //测试数据
-    let totalItems = 100;
-    let rightItems = 49;
-    let userScore = 80;
-    let completePercent = parseInt((rightItems / totalItems) * 100);
-    console.log(completePercent)
-    that.getResultComment(completePercent);
-    that.setData({
-      completePercent: completePercent,
-      userScore: userScore,
-    })
+    that.getMyScoreCheck();
     
+  },
+
+  getMyScoreCheck: function(){
+    let that = this;
     let user_id = 1;
     wx.request({
       url: app.baseUrl + '/bank/grade/query/',
@@ -54,12 +27,67 @@ Page({
         user_id: user_id,
       },
       success: function (res) {
-        console.log(res.data)
-        that.setData({ chapterScore: res.data.data });
+        console.log(res.data.data)
+        let chapterScore = res.data.data;
+        let handledScore = [];
+        let sectionIds = [];
+        for (let i = 0; i < chapterScore.length; i++) {
+          let chapterValue = parseFloat(chapterScore[i].value);
+          let sectionId = chapterScore[i].section_id;
+          handledScore.push(chapterValue)
+          sectionIds.push(sectionId)
+        }
+        that.setData({
+          chapterScore: res.data.data,
+          // 處理之後的每章節題的得分值，String類型變爲Number類型
+          handledScore: handledScore,
+        });
+        console.log("handledScore:" + handledScore)
+        that.getSectionList(sectionIds)
       }
     })
-
   },
+
+  getSectionList: function (sectionIds){
+    let that = this;
+    let url = app.baseUrl + '/bank/question/query/';
+    let chapterScoreData = [];
+    let chapterTotalCountData = [];
+    let passScores = [];
+    for (let i = 0; i < sectionIds.length; i++){
+      wx.request({
+        url: url,
+        data: {
+          section_id: sectionIds[i]
+        },
+        success: function (res) {
+          console.log(res.data.data)
+          let itemDatas = res.data.data;
+          let itemValue = parseFloat(itemDatas.object_list[0].value);
+          let itemTotalCount = itemDatas.meta.total_count;
+          // 及格分测试数据
+          //let passScore = (itemTotalCount * itemValue)*0.02;
+          // 正式及格分
+          let passScore = (itemTotalCount * itemValue) * 0.6;
+
+          // 單個章節每題的分值
+          chapterScoreData.push(itemValue)
+          // 总题数
+          chapterTotalCountData.push(itemTotalCount)
+          // 每章节及格分数
+          passScores.push(passScore)
+          that.setData({
+            chapterScoreData: chapterScoreData,
+            chapterTotalCountData: chapterTotalCountData,
+            passScores: passScores
+          })
+          console.log("chapterScoreData:" + chapterScoreData)
+          console.log("passScores:" + passScores)
+        }
+      })
+    }
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

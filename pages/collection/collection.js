@@ -39,13 +39,14 @@ Page({
   jumpTocollectionDetail: function (e) {
     let that = this;
     let collectionItems = that.data.collectionItems;
+    let title = e.target.dataset.title;
     let section_id = e.target.dataset.section_id;
     let id = e.target.id;
     if(id){
       let bookmarkList = collectionItems[id].bookmark_list;
       wx.setStorageSync("bookmarkList", bookmarkList)
       wx.navigateTo({
-        url: '../collectionDetail/collectionDetail?section_id=' + section_id,
+        url: '../collectionDetail/collectionDetail?section_id=' + section_id + '&title=' + title + '&id=' + id,
       })
     }
   },
@@ -55,13 +56,14 @@ Page({
   jumpToMyErrorPage: function (e) {
     let that = this;
     let myErrorPages = that.data.myErrorPages;
+    let title = e.target.dataset.title;
     let section_id = e.target.dataset.section_id;
     let id = e.target.id;
     if (id) {
       let logList = myErrorPages[id].log_list;
       wx.setStorageSync("logList", logList)
       wx.navigateTo({
-        url: '../myErrorPage/myErrorPage?section_id=' + section_id,
+        url: '../myErrorPage/myErrorPage?section_id=' + section_id + '&title=' + title,
       })
     }
   },
@@ -176,7 +178,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    let that = this;
+    wx.showToast({
+      title: '刷新中...',
+      icon: 'loading'
+    })
+    that.getMyCollection();
+    wx.stopPullDownRefresh()
   },
 
   /**

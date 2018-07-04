@@ -5,14 +5,16 @@
       <image src='/images/nocollection.jpg' class='noStateImg'></image>
       <view class='info'>暂无收藏</view>
   </view>    
-  <view class='DetailBox' hidden='{{bookmarkList == "" ? true : false}}' bindtap='jumpTocollectionDetailResult'>
-    <view class='chapter'>章节的标题</view>
-    <view class='questionList' wx:for='{{bookmarkList}}' wx:for-index='index' wx:for-item='bookmarkList' wx:key='*this' id='{{bookmarkList.id}}'>
-      <text class='question'>{{bookmarkList.question_info.title}}</text>
-      <view class='collect active' catchtap="togleClassActive">
-        <image class='collectNo' src="/images/collection1.png"></image>
-        <image class='collectok' src="/images/collection2.png">></image>      
+  <view class='DetailBox' hidden='{{bookmarkList == "" ? true : false}}' bindtap='jumpTocollectionDetailResult' data-totalCount='{{bookmarkList.length}}'>
+    <view class='chapter'>{{title}}</view>
+    
+    <view class='questionList' wx:for='{{bookmarkList}}' wx:for-index='index' wx:for-item='bookmarkList' wx:key='*this' id='{{index}}'>
+      <text class='question' id='{{index}}'>{{bookmarkList.question_info.title}}</text>
+      <!-- 收藏 -->
+      <view class='collect'>
+        <image class="collectIcon" src="/images/collection2.png" data-id='{{bookmarkList.question_id}}'  catchtap='deleteCollection'></image>  
       </view>
     </view>
+
   </view>
 </view>

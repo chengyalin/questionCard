@@ -2,50 +2,50 @@
 <view class='containerBox'>
 
     <view class='questionVariety'>
-      <text class='questionType'>单选题</text>
-      <view class='allQuesstion'> 12/150</view>
+      <text class='questionType'>{{questionType == 1 ? '单选题' : '多选题'}}</text>
+      <view class='allQuesstion'>{{index+1}}/{{totalCount}}</view>
     </view>
 
   <view class='questionMain'>
     <view class='questionBox'>
-      <view class='question'>听觉的感受器是（   ）。</view>
-      <view class='answer'>
-        <text class='choose'>A</text>
-        <text class='chooseWord'>听神经1</text>
+      <view class='question'>{{questionInfo.title}}</view>
+      <view class="answer {{rightAnswer == 'A' ? 'active' : ''}}">
+        <text class='choose'>{{A}}</text>
+        <text class='chooseWord'>{{questionInfo.select_a}}</text>
       </view>
-      <view class='answer'>
-        <text class='choose'>B</text>
-        <text class='chooseWord'>听神经2</text>
+      <view class="answer {{rightAnswer == 'B' ? 'active' : ''}}">
+        <text class='choose'>{{B}}</text>
+        <text class='chooseWord'>{{questionInfo.select_b}}</text>
       </view>
-      <view class='answer'>
-        <text class='choose'>C</text>
-        <text class='chooseWord'>听神经3</text>
+      <view  class="answer {{rightAnswer == 'C' ? 'active' : ''}}">
+        <text class='choose'>{{C}}</text>
+        <text class='chooseWord'>{{questionInfo.select_c}}</text>
       </view>
-      <view class='answer'>
-        <text class='choose'>D</text>
-        <text class='chooseWord'>听神经4</text>
+      <view class="answer {{rightAnswer == 'D' ? 'active' : ''}}">
+        <text class='choose'>{{D}}</text>
+        <text class='chooseWord'>{{questionInfo.select_d}}</text>
+      </view>
+      <view class='btnBox'>
+        <text class='rightResult'>正确答案 <text class='rightChoose'>{{questionInfo.answer}}</text> </text>
+        <text class='myResult'>您的答案 <text class='rightChooseF'>{{userChoice}}</text> </text>
       </view>
     </view>
-    <view class='btnBox'>
-      <text class='rightResult'>正确答案 <text class='rightChoose'>A</text> </text>
-      <text class='myResult'>您的答案 <text class='rightChooseF'>C</text> </text>
-    </view>
+    
   </view>
 
   <!-- 讨论区 -->
   <view class='discussBox'>
   
-    <view class='discussAreaBtnArea'>
+    <view class='discussAreaBtnArea' bindtap='clickUpDown'>
         <button class='discussAreaBtn'>讨论区</button>
-        <image src='/images/up.png' class="upIcon {{upTu?'show':'hidden'}}" bindtap='clickUpIcon'></image>  
-        <image src='/images/down.png' class="downIcon {{downTu?'show':'hidden'}}" bindtap='clickDownIcon'></image>
+        <image src='{{imgUrl}}' class="upIcon"></image>  
     </view>
     <!-- 讨论区列表 -->
     <view class="commentList {{commentListArea?'show':'hidden'}}">
     <view class='commentsBox' wx:for="{{commentsList}}" wx:key="commentsList" wx:for-index="index" wx:for-item="item">
       <view class='commentsArea'>
-        <!-- <view class='leftArea'><image src='{{item.userInfo.headimgurl}}' class='leftUserIcon'></image></view> -->
-        <view class='leftArea'><image src='{{userInfo.avatarUrl}}' class='leftUserIcon'></image></view>
+        <view class='leftArea'><image src='{{item.userInfo.headimgurl}}' class='leftUserIcon'></image></view> 
+        <!-- <view class='leftArea'><image src='{{item.avatarUrl}}' class='leftUserIcon'></image></view> -->
         <view class='rightArea'>
           <view class='commentInfo'><text class='userName'>{{item.userinfo.nickname}}</text> <text class='dataTime'>{{item.create_time}}</text></view>
           <view class='commentInfoWord'>{{item.comment}}</view>

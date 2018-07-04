@@ -1,16 +1,32 @@
 <!--pages/writeInfo/writeInfo.wxml-->
 <view class='containerBox'>
   <view class='writeInfoBox'>
+    <!-- 请输入姓名 -->
     <view class='writeName'>
-      <input type="text" placeholder="请输入姓名" class='inputStyle' />
+      <input type="text" placeholder="请输入姓名" placeholder-class="phcolor" class='inputStyle' value='{{NameValue}}' bindinput='bindinputName' />
       <image src='/images/login1.png' class='leftIcon'></image>
     </view>
+    <!-- 请输入身份证号码 -->
     <view class='writeName writeIdCard'>
-      <input type="idcard" placeholder="请输入身份证号码"  class='inputStyle' />
+      <input type="idcard" placeholder="请输入身份证号码" placeholder-class="phcolor"  class='inputStyle' value='{{IdCardValue}}' bindinput='bindinputIdCard' />
       <image src='/images/login2.png' class='leftIcon'></image>      
     </view>
-    <button class='sureBtn' bindtap='jumpToMyScoreCard'>确认</button>
-  </view>
-      <!-- 底部背景 -->
+      <!-- 请选择培训学校 -->
+    <view class='writeName selectBox'>
+      <image src='/images/login3.png' class='leftIcon'></image>    
+      <view class="section">
+        <picker class="sectionPicker" bindchange="bindPickerChange" value="{{slectedValue}}" range="{{slectedArray}}">
+          <view class="picker">
+          <text class="{{placeHolder?'placeHolderShow':'hidden'}}">请选择培训学校</text>
+          <text class='slectValueStyle'>{{slectedArray[slectedValue]}}</text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <button class="sureBtn '{{disabledState ? 'disabled' : ''}}'"  bindtap='jumpToMyScoreCard'>生成成绩单</button>
+    <!-- 底部背景 -->
     <image class='bottombg' src='/images/bottombg.png'></image>
+  </view>
+      
 </view>

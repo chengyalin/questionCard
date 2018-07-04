@@ -6,10 +6,6 @@
 .question{font-size: 36rpx;line-height: 60rpx;}
 
 /* 收藏 */
-.collect{color:#333;display: inline-block;position: absolute;bottom: 10rpx;right: 0;}
-.collect .collectNo{display: inline-block;width: 60rpx;height: 60rpx;}
-.collect .collectok{display: none;width: 60rpx;height: 60rpx;}
 
-.collect.active{}
-.collect.active .collectNo{display: none;width: 60rpx;height: 60rpx;}
-.collect.active .collectok{display: inline-block;width: 60rpx;height: 60rpx;}
+.collect .collectIcon{display:block;width: 60rpx;height: 60rpx;float: right;}
+

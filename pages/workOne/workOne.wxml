@@ -3,7 +3,7 @@
   <view class='workMain'>
     <view class='questionBox' bindtap="jumpToQuestion" data-id='{{item.section_id}}' wx:for="{{workList}}" wx:key="workList" wx:for-index="index" wx:for-item="item">
       <text class='name'>{{item.title}}</text>
-      <text class='people'>{{item.status}}</text>
+      <text class='people'>{{item.count}}题/预计{{item.time}}</text>
     </view>
 
     <!-- 底部背景 -->

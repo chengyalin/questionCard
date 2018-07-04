@@ -10,9 +10,16 @@ Page({
   /**
  * 页面的跳转我的错题详情
  */
-  jumpToMyErrorPageResult: function () {
+  jumpToMyErrorPageResult: function (e) {
+    let that = this;
+    let index = e.target.id;
+    console.log(e.target)
+    console.log(e.currentTarget)
+    console.log("index:" + index)
+    let totalCount = e.currentTarget.dataset.totalcount;
+    let questionType = e.currentTarget.dataset.questiontype;
     wx.navigateTo({
-      url: '../myErrorPageResult/myErrorPageResult',
+      url: '../myErrorPageResult/myErrorPageResult?index=' + index + '&totalCount=' + totalCount,
     })
   },
   /**
@@ -20,12 +27,14 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    let title = options.title;
     let section_id = options.section_id;
     let logList = wx.getStorageSync("logList");
     console.log("logList:" + logList)
     that.setData({
       logList: logList,
-      section_id: section_id
+      section_id: section_id,
+      title:title
     })
   },
 

@@ -2,9 +2,9 @@
 <view class='containeerBox'>
   <view class='ckMyScore'>
     <!-- 及格 与不及格状态-->
-    <view class='chapterBox {{ chapterBoxScore? "Nopass" : ""}}'  wx:for="{{chapterScore}}" wx:key="chapterScore" wx:for-index="index" wx:for-item="item">
+    <view class='chapterBox {{handledScore[index] < passScores[index]? "Nopass" : ""}}'  wx:for="{{chapterScore}}" wx:key="chapterScore" wx:for-index="index" wx:for-item="item">
       <view class='imgWordBox'>
-        <text class='pass'>{{resultComment}}</text>
+        <text class='pass'>{{handledScore[index] < passScores[index]? "不及格" : "及格"}}</text>
       </view>
 
       <view class='chapterR'>
@@ -12,7 +12,7 @@
         <text class='chapterInfo'>{{item.section_title}}</text>
       </view>
       <view class='allWordInfo'>
-        <text class='rightWord'>110</text><text class='allWord'>/150</text>
+        <text class='rightWord'>得分{{handledScore[index]/chapterScoreData[index]}}分</text><text class='allWord'>/总题数{{chapterTotalCountData[index]}}题</text>
       </view>
       </view>
     </view>

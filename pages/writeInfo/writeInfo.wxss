@@ -5,8 +5,20 @@
 .writeInfoBox{background-color: #fff;border-radius: 10px;margin: 50rpx;padding: 40rpx;}
 
 .writeName{position: relative;}
-.inputStyle{border-bottom: 1px solid #f0f0f0;font-size: 28rpx;padding: 20rpx 0 20rpx 100rpx;}
+.inputStyle{border-bottom: 1px solid #f0f0f0;font-size: 30rpx;padding: 20rpx 0 20rpx 100rpx;color: #000;}
+.phcolor{font-size: 30rpx;color: #c2c2c2;}
 .leftIcon{display: block;width: 60rpx;height: 60rpx;position: absolute;left: 0;top:16rpx;}
 
 .sureBtn{height: 70rpx;line-height: 70rpx;color: #fff;background-color: #3686ff;border: 1px solid #3686ff;margin-top: 50rpx;font-size: 28rpx;border-radius: 10px;}
-.sureBtn.disabled{color:#000;background-color: #c3c3c3;border:1px solid #c3c3c3;pointer-events: none;cursor: default;}
+.sureBtn.disabled{color:#000;background-color: #c3c3c3;border:1px solid #c3c3c3;pointer-events: none;cursor: default}
+
+/* 下拉选项 */
+.writeName.selectBox{border-bottom: 1px solid #f0f0f0;font-size: 28rpx;padding: 0rpx 0 0rpx 100rpx;}
+.sectionPicker{height: 90rpx;line-height: 90rpx;}
+.placeHolderShow{font-size: 30rpx;color: #c2c2c2;}
+.placeHolderhidden{display: none;}
+.slectValueStyle{font-size: 30rpx;color: #000;}
+
+
+/* 按钮不可选中状态 */
+.noclick{pointer-events: none;cursor: default}

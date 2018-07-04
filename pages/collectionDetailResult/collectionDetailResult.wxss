@@ -26,9 +26,8 @@ page {display: block;min-height: 100%;background-color: #3686ff;}
 .nextBtn{display: inline-block;width: 180rpx;height: 60rpx;line-height: 60rpx; font-size: 30rpx;border: 1px solid #2AABE5;background-color: #fff; color: #2AABE5;border-radius: 22px;margin: 0 38rpx;}
 
 .collect{color:#333;display: inline-block;margin-left: 30rpx;float: right;}
-.collect .collectNo{display: inline-block;width: 60rpx;height: 60rpx;}
-.collect .collectok{display: none;width: 60rpx;height: 60rpx;}
+.collect .collectIcon{display:block;width: 60rpx;height: 60rpx;float: right;}
+.collect .collectIcon{display: block;width: 60rpx;height: 60rpx;float: right;}
 
-.collect.active{}
-.collect.active .collectNo{display: none;width: 60rpx;height: 60rpx;}
-.collect.active .collectok{display: inline-block;width: 60rpx;height: 60rpx;}
+.collect .collectIcon.show{display: block;}
+.collect .collectIcon.hidden{display: none;}

@@ -21,8 +21,8 @@ page {display: block;min-height: 100%;background-color: #3686ff;}
 .btnBox{}
 .preBtn{width:318rpx;height:80rpx;background:rgba(255,255,255,1);border-radius:40rpx;border: none;
 box-shadow:9px 4px 24px rgba(54,134,255,0.18);font-size:32rpx;margin: 40rpx auto 40rpx;}
-.nextBtn{width:318rpx;height:80rpx;background:rgba(54,134,255,1);border-radius:40rpx;border: none;color: #fff;
-box-shadow:9px 4px 24px rgba(54,134,255,0.27);font-size:32rpx;margin: 40rpx auto;}
+.nextBtn{width:318rpx;height:80rpx;background:rgba(54,134,255,1);border-radius:40rpx;border: none;
+box-shadow:9px 4px 24px rgba(54,134,255,0.27);font-size:32rpx;margin: 40rpx auto;color: #fff;}
 
 .collect{width: 100%;height: 60rpx; color:#333;margin-right: 20rpx;}
 .collect .collectIcon{display:block;width: 60rpx;height: 60rpx;float: right;}

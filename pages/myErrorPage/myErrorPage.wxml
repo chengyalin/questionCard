@@ -1,9 +1,15 @@
 <!--pages/myErrorPage/myErrorPage.wxml-->
 <view class='containerBox'>
-  <view class='myErrorPageBox' bindtap='jumpToMyErrorPageResult'>
-    <view class='chapter'>章节标题</view>
-    <view class='questionList' wx:for='{{logList}}' wx:for-item='logList' wx:key='*this'>
-      <text class='question'>{{logList.question_info.title}}</text>
+      <!-- 没有错题的状态 -->
+  <view class='noDataState' hidden='{{logList == "" ? false : true}}'>
+      <image src='/images/nocollection.jpg' class='noStateImg'></image>
+      <view class='info'>暂无错题</view>
+  </view>  
+
+  <view class='myErrorPageBox'  hidden='{{logList == "" ? true : false}}' bindtap='jumpToMyErrorPageResult' data-totalCount='{{logList.length}}'>
+    <view class='chapter'>{{title}}</view>
+    <view class='questionList' wx:for='{{logList}}' wx:for-item='logList' wx:key='*this' wx:for-index='index' id='{{index}}'>
+      <text class='question' id='{{index}}'>{{logList.question_info.title}}</text>
     </view>
   </view>
 </view>

@@ -1,16 +1,14 @@
 {
   "pages": [
-    "pages/myScore/myScore",
-    "pages/myScoreCard/myScoreCard",
+                "pages/writeInfo/writeInfo",
+        "pages/myScoreCard/myScoreCard",
 
 
-    "pages/question/question",
-    "pages/workOne/workOne",
-   "pages/home/home",
-    
+
+        "pages/myScore/myScore",
 
     "pages/myScoreCheck/myScoreCheck",
-    "pages/writeInfo/writeInfo",
+
 
 
 
@@ -18,14 +16,16 @@
     "pages/collectionDetail/collectionDetail",
     "pages/collectionDetailResult/collectionDetailResult",
 
-
-
-
+    "pages/question/question",
+    "pages/workOne/workOne",
     "pages/answerCard/answerCard",
     "pages/answerCardResult/answerCardResult",
-    
+
     "pages/myErrorPage/myErrorPage",
     "pages/myErrorPageResult/myErrorPageResult",
+
+
+    "pages/home/home",
 
     "pages/index/index",
     "pages/logs/logs"
