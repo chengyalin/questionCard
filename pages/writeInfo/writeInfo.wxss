@@ -1,5 +1,5 @@
 /* pages/writeInfo/writeInfo.wxss */
- page {display: block;min-height: 100%;background-color: #3686ff;}
+ page {display: block;height: 100%;background-color: #3686ff;overflow: hidden}
 .bottombg{display: block;width: 630rpx;height: 233rpx;position: fixed;left: 0;bottom: 0;z-index: -1;}
 
 .writeInfoBox{background-color: #fff;border-radius: 10px;margin: 50rpx;padding: 40rpx;}

@@ -36,16 +36,16 @@ Page({
           resultComment: "不及格"
         })
         break;
-      case completePercent >= 60 && completePercent <= 100:
+      case completePercent >= 60 && completePercent <80:
         that.setData({
           resultComment: "及格"
         })
         break;
-      // case completePercent >= 70 && completePercent < 80:
-      //   that.setData({
-      //     resultComment: "中等"
-      //   })
-      //   break;
+      case completePercent >= 80 && completePercent <=100:
+        that.setData({
+          resultComment: "优秀"
+        })
+        break;
       // case completePercent >= 80 && completePercent < 90:
       //   that.setData({
       //     resultComment: "良好"
@@ -85,7 +85,7 @@ Page({
     //测试数据
     // let totalItems = 100;
     // let rightItems = 2;
-    // let userScore = 80;
+    // let userScore = 2;
     let completePercent = parseInt((rightItems / totalItems) * 100);
     console.log(completePercent)
     that.getResultComment(completePercent);

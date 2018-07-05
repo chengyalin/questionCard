@@ -1,17 +1,15 @@
 <!--pages/myScoreCard/myScoreCard.wxml-->
-<view class='containerBox containerBoxWH'>
 
 <!-- 画布大小按需定制 这里我按照背景图的尺寸定的  -->
-<canvas canvas-id="shareImg" style="width:355px;height:520px"></canvas>
-  
-<!-- 预览区域  -->
-<view hidden='{{hidden}}' class='preview'>
-  <image src='{{prurl}}' mode='widthFix'></image>
-  <button  bindtap='shareFriend' class='shareFriend'>分享给好友</button>
-  <button  bindtap='save' class='saveImg'>保存到相册</button>
-</view>
+<!-- <view class='canvasBox'> -->
+<canvas canvas-id="shareImg" style="width:100%;height:100%;"></canvas>
 
-<button class='shengchengtu' bindtap='share'>生成分享图</button>
+ <button class='shareFriendBtn' id="shareBtn" open-type="share" ></button>
+
+ <!-- 分享不能绑在图片上，不生效，于是将按钮遮盖图片，视觉就是分享按钮的图 -->
+  <image src='/images/shareFriend.png' class='shareFriend'></image> 
 
 
-</view>
+  <image src='/images/saveCamera.png' class='saveImg' bindtap='save'></image>
+<!-- </view> -->
+
