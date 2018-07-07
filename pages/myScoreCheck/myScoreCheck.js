@@ -20,7 +20,10 @@ Page({
 
   getMyScoreCheck: function(){
     let that = this;
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     wx.request({
       url: app.baseUrl + '/bank/grade/query/',
       data: {

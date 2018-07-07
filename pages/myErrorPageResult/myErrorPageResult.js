@@ -52,21 +52,25 @@ Page({
     let that = this;
     let index = parseInt(options.index);
     let totalCount = options.totalCount;
-    let logList = wx.getStorageSync("logList");
+    let logList = wx.getStorageSync("logList");//从缓存中取
     let questionInfo = logList[index].question_info;
     let userChoice = logList[index].you_choice;
     // 测试数据
     // logList[index].question_info['question_type'] = 2;
     let questionType = logList[index].question_info.question_type;
     let rightAnswer = questionInfo.answer;
+    let question_id = logList[index].question_id;
+
     that.setData({
       index: index,
       totalCount: totalCount,
       questionType: questionType,
       questionInfo: questionInfo,
       userChoice: userChoice,
-      rightAnswer: rightAnswer
+      rightAnswer: rightAnswer,
+      question_id: question_id
     })
+
     that.getCommentsList();
   },
 
@@ -77,12 +81,17 @@ Page({
     that.setData({
       userInfo: userInfo
     });
-
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
+    let question_id = that.data.question_id;
+    console.log('question_id :' + question_id)
     wx.request({
       url: app.baseUrl + '/bank/comment/list/', //讨论区留言列表接口地址
       data: {
-        user_id: 1,
-        question_id: 1
+        user_id: user_id,
+        question_id: question_id,
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -92,6 +101,7 @@ Page({
         that.setData({ commentsList: res.data.data })
       }
     })
+    
   },
 
   //通过bindinput事件获取用户输入的评论，并保存至data中
@@ -104,14 +114,21 @@ Page({
   },
 
   getUserComments: function () {
-    let that = this
+    let that = this;
+    
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
+    let question_id = that.data.question_id;
     let commentValue = that.data.commentValue;
+    
     if (commentValue) {
       wx.request({
         url: app.baseUrl + '/bank/comment/create/', //讨论区用户对题目发表评论
         data: {
-          user_id: 1,
-          question_id: 1,
+          user_id: user_id,
+          question_id: question_id,
           comment: commentValue
         },
         header: {

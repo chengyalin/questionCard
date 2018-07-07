@@ -14,7 +14,10 @@ Page({
   jumpToAnswerCardResult: function () {
     let that = this;
     let section_id = that.data.section_id;
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     let data = wx.getStorageSync("data");
     // let finishedItems = that.calculateObjAttrLength(data);
     let meta = wx.getStorageSync("metaName")

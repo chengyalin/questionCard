@@ -89,8 +89,10 @@ Page({
   getUserScore: function(){
     let that = this;
     let url = app.baseUrl + '/bank/grade/query/';
-    // 测试数据
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     wx.request({
       url: url,
       data: {

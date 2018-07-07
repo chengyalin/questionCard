@@ -51,6 +51,9 @@ page {display: block;min-height: 100%;background-color: #3686ff;}
 .commentInfoWord{font-size: 26rpx;color: #4f4f4f;line-height:42rpx;}
 
 .writeWord{width:750rpx;height:120rpx; background:#fff;box-shadow:0px 1px 21px rgba(54,134,255,0.15);position: fixed;left: 0;bottom: 0;}
-.write{display: block; width:500rpx;padding: 14rpx 30rpx; height:26rpx;font-size: 26rpx; background:#f1f0f0;border-radius:32px;color: #000;margin: 20rpx 36rpx 0 20rpx;float: left;}
+.write{display: block; width:500rpx;padding: 14rpx 30rpx; height:26rpx;font-size: 26rpx; background:#f1f0f0;border-radius:32px;color: #000;margin: 20rpx 0rpx 0 20rpx;float: left;}
 .sendMessage{float: right;height:80rpx;line-height: 80rpx; margin: 20rpx 26rpx 0 0;font-size: 26rpx;}
 
+
+.noDataStateComment{margin-top: 30rpx;}
+.noDataStateComment .info{text-align: center;color: #666;font-size: 32rpx;}

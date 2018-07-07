@@ -112,9 +112,10 @@ Page({
 
   getMyErrorPage: function(){
     let that = this;
-    // let user_id = app.globalData.user_id;
-    // 测试数据
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     wx.request({
       url: app.baseUrl + '/bank/errorlog/query/?user_id=' + user_id,
       success: function (res) {
@@ -130,9 +131,10 @@ Page({
 
   getMyCollection: function(){
     let that = this;
-    // let user_id = app.globalData.user_id;
-    // 测试数据
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     wx.request({
       url: app.baseUrl + '/bank/bookmark/query/?user_id=' + user_id,
       success: function (res) {

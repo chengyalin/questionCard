@@ -36,8 +36,8 @@
 .popupMain .popupWord{text-align: center;line-height: 60rpx;font-size: 40rpx;color: #fff;}
 
 .popupMain .twoBtn{}
-.popupMain .leftBtn{width: 180rpx;height: 70rpx;line-height: 70rpx;font-size: 30rpx; border: 1px solid #3686ff;float: left;margin: 40rpx 0 40rpx 50rpx;color: #3686ff;background-color: #fff;border-radius: 14px;}
-.popupMain .rightBtn{width: 180rpx;height: 70rpx;line-height: 70rpx;font-size: 30rpx;border: 1px solid #3686ff;float:right;margin: 40rpx 50rpx 40rpx 0;color: #fff;background-color: #3686ff;border-radius: 14px;}
+.popupMain .leftBtn{width: 180rpx;height: 70rpx;line-height: 70rpx;font-size: 28rpx; border: 1px solid #3686ff;float: left;margin: 40rpx 0 40rpx 50rpx;color: #3686ff;background-color: #fff;border-radius: 14px;}
+.popupMain .rightBtn{width: 180rpx;height: 70rpx;line-height: 70rpx;font-size: 28rpx;border: 1px solid #3686ff;float:right;margin: 40rpx 50rpx 40rpx 0;color: #fff;background-color: #3686ff;border-radius: 14px;}
 
 .show{display:block;}
 .hidden{display:none;}

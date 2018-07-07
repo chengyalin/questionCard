@@ -19,22 +19,20 @@ App({
     wx.login({
       success: function (res) {
         if (res.code) {
-          //发起网络请求
+          console.log('code是'+res.code)
           wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session',
+            url:'https://tiku.xlxhs.cn/user/openid/query/', //接口地址
             data: {
-              appid: "wx8589726818d68c94",
-              secret: "f0b17bdaa86a056441748cf008c99f44",
-              js_code: res.code,
-              grant_type: 'authorization_code'
+              code: res.code,
             },
-            method: 'GET',
-            header: { 'content-type': 'application/json' },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
             success: function (response) {
               wx.hideLoading()
-              that.globalData.openid = response.data.openid;
-              that.getUserInfo();
-              console.log(that.globalData.openid)
+              that.globalData.openid = response.data.data.openid;
+              console.log("openid:" + that.globalData.openid)
+              // that.getAuthorized(that.globalData.openid);
             }
           })
         } else {
@@ -45,47 +43,56 @@ App({
     });
   },
 
-  getUserInfo: function () {
-    // 获取用户信息
+  getAuthorized: function (openid) {
+    console.log(openid)
+    let that = this;
+    // 可以通过 wx.getSetting 先查询一下用户是否授权了 'scope.userInfo' 这个 scope
     wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo;
-              //this.userRegister();
-              console.log(this.globalData.userInfo)
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-                this.userRegister();
-              }
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              that.getUserInformation(openid)
             }
           })
+        }else{
+          that.getUserInformation(openid)
         }
       }
     })
   },
 
+  getUserInformation: function (openid){
+    let that = this;
+    wx.getUserInfo({
+      success: res => {
+        this.globalData.userInfo = res.userInfo;
+        console.log("userInfo:" + res.userInfo)
+        console.log("userInfo:" + this.globalData.userInfo)
+        this.userRegister(openid, res.userInfo);
+      },
+    })
+  },
+
   //用户注册
-  userRegister: function () {
+  userRegister: function (openid, userInfo) {
     let that = this;
     let url = that.baseUrl + '/user/create/';
     wx.request({
       url: url,
       data: {
-        openid: that.globalData.openid,
-        nickname: that.globalData.userInfo.nickName,
-        headimgurl: that.globalData.userInfo.avatarUrl,
-        sex: that.globalData.userInfo.gender,
-        city: that.globalData.userInfo.city,
-        province: that.globalData.userInfo.province
+        openid: openid,
+        nickname: userInfo.nickName,
+        headimgurl: userInfo.avatarUrl,
+        sex: userInfo.gender,
+        city: userInfo.city,
+        province: userInfo.province
       },
       success: function (res) {
         console.log(res.data)
+        that.globalData.user_id = res.data.data.user_id;//用户id
+        console.log('user_id' + that.globalData.user_id)
       }
     })
   },
@@ -93,6 +100,7 @@ App({
   globalData: {
     userInfo: null,
     popupBoxShow: false,
+    openid: ''
   },
 
 

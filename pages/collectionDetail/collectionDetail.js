@@ -43,7 +43,10 @@ Page({
   deleteCollection: function (e) {// 点击星星取消收藏，并且将题目从我的收藏列表删除
     let that = this;
     let question_id = e.target.dataset.id;
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     let section_id = that.data.section_id;
     that.getCollectionCancel(question_id, user_id, section_id);
     wx.showToast({

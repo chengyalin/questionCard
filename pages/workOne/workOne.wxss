@@ -7,4 +7,5 @@
 .questionBox .people{display:block;font-size: 30rpx;color: #F7DE5A;}
 
 
+.preTime{margin-left: 10rpx;}
 .bottombg{display: block;width: 630rpx;height: 233rpx;position: fixed;left: 0;bottom: 0;z-index: -1;}

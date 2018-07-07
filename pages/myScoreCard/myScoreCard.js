@@ -7,9 +7,11 @@ Page({
    */
   data: {
     hidden: true,
-    resultComment:''
+    resultComment:'',
+    saveImgHandleHidden: false,
+    openSettingHidden: true
   },
-  onShareAppMessage: function (ops) {
+  onShareAppMessage: function (ops) {//分享给好友
     if (ops.from === 'button') {
       // 来自页面内转发按钮
       console.log(ops.target)
@@ -30,13 +32,6 @@ Page({
 
   },
 
-  // onShareAppMessage: function () {//分享给好友
-  //   return {
-  //     title: '微信小程序联盟',
-  //     desc: '最具人气的小程序开发联盟!',
-  //     path: '/myScoreCard/myScoreCard'
-  //   }
-  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -131,7 +126,6 @@ Page({
       ctx.drawImage('../../' + res[0].path, 0, 0, that.data.winWidth, that.data.winHeight-70)//背景x0，y0，，with等于屏幕高；height等于屏幕高建按钮高
       ctx.drawImage('../../' + res[1].path, (that.data.winWidth/2 - 120), 50, 240, 150)//标题
 
-
       ctx.setTextAlign('center')
       ctx.setFillStyle('#9a8576')
       ctx.setFontSize(22)
@@ -141,9 +135,9 @@ Page({
       ctx.setFillStyle('#304d64')
       ctx.setFontSize(14)
       console.log("resultComment:" + that.data.resultComment)
-      ctx.fillText('身份证号码：' + id_card, 70, ((that.data.winHeight) / 2) + 20)
-      ctx.fillText('培训学校：' + school_id, 70, ((that.data.winHeight) / 2) + 50)
-      ctx.fillText('成绩评定：' + that.data.resultComment, 70, ((that.data.winHeight) / 2) + 80)
+      ctx.fillText('身份证号码：' + id_card, 50, ((that.data.winHeight) / 2) + 20)
+      ctx.fillText('培训学校：' + school_id, 50, ((that.data.winHeight) / 2) + 50)
+      ctx.fillText('成绩评定：' + that.data.resultComment, 50, ((that.data.winHeight) / 2) + 80)
 
       ctx.stroke()
       ctx.draw()
@@ -157,6 +151,12 @@ Page({
   save: function () {
     var that = this;
     //获取相册授权
+    that.authorize()
+    // that.savaImageToPhoto();
+  },
+
+  authorize: function(){
+    let that = this;
     wx.getSetting({
       success(res) {
         if (!res.authSetting['scope.writePhotosAlbum']) {
@@ -164,13 +164,44 @@ Page({
             scope: 'scope.writePhotosAlbum',
             success() {
               that.savaImageToPhoto();
+            },
+            fail(){
+              that.setData({
+                saveImgHandleHidden: true,
+                openSettingHidden: false
+              }) 
             }
           })
-        }else{
+        } else {
           that.savaImageToPhoto();
         }
-      }
+      },
     })
+  },
+
+  handleSetting: function(e){
+    let that = this;
+    if (!e.detail.authSetting['scope.writePhotosAlbum']) {
+      wx.showModal({
+        title: '警告',
+        content: '若不打开授权，则无法将图片保存在相册中！',
+        showCancel: false
+      })
+      that.setData({
+        saveImgHandleHidden: true,
+        openSettingHidden: false
+      })
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '您已授权，赶紧将图片保存在相册中吧！',
+        showCancel: false
+      })
+      that.setData({
+        saveImgHandleHidden: false,
+        openSettingHidden: true
+      })
+    }
   },
 
   savaImageToPhoto: function(){
@@ -208,9 +239,6 @@ Page({
           }
         })
       },
-      fail: function (res) {
-        console.log(res)
-      }
     })
   },
 })

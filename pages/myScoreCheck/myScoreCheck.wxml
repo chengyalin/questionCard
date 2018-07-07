@@ -1,5 +1,10 @@
 <!--pages/myScoreCheck/myScoreCheck.wxml-->
 <view class='containeerBox'>
+      <!-- 没有成绩的状态 -->
+  <view class='noDataState' hidden='{{chapterScore == "" ? false : true}}'>
+      <image src='/images/nocollection.jpg' class='noStateImg'></image>
+      <view class='info'>暂无成绩</view>
+  </view>
   <view class='ckMyScore'>
     <!-- 及格 与不及格状态-->
     <view class='chapterBox {{handledScore[index] < passScores[index]? "Nopass" : ""}}'  wx:for="{{chapterScore}}" wx:key="chapterScore" wx:for-index="index" wx:for-item="item">

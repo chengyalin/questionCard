@@ -175,7 +175,10 @@ Page({
   jumpToStart: function () {//弹窗点击确认提交
     let that = this;
     let section_id = that.data.section_id;
-    let user_id = 1;
+    //真实user_id
+    let user_id= app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     let data = wx.getStorageSync("data");
     // let finishedItems = that.calculateObjAttrLength(data);
     let totalCount = that.data.meta.total_count;
@@ -396,8 +399,10 @@ Page({
   onCollectionTapOK: function () {//点收藏
     let that = this;
     let question_id = that.data.objList.question_id;
-    // 测试数据
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     let section_id = that.data.section_id;
     that.getCollection(question_id, user_id, section_id)
   },
@@ -405,8 +410,10 @@ Page({
   onCollectionTapNo: function () {//再点收藏就取消收藏了
     let that = this;
     let question_id = that.data.objList.question_id;
-    // 测试数据
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     let section_id = that.data.section_id;
     that.getCollectionCancel(question_id, user_id, section_id)
   },
@@ -434,7 +441,10 @@ Page({
   isQuestionCollected: function (meta, objectList, section_id) {
     let that = this;
     let url = app.baseUrl + '/bank/bookmark/query/';
-    let user_id = 1;
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    //测试数据
+    //let user_id = 1;
     wx.request({
       url: url,
       data: {

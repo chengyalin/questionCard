@@ -42,10 +42,15 @@
     </view>
     <!-- 讨论区列表 -->
     <view class="commentList {{commentListArea?'show':'hidden'}}">
+      <!-- 没有评论状态 -->
+      <view class='noDataStateComment' hidden='{{commentsList == "" ? false : true}}'>
+          <view class='info'>暂无评论，我要坐第一条沙发…^_^</view>
+      </view>  
+
     <view class='commentsBox' wx:for="{{commentsList}}" wx:key="commentsList" wx:for-index="index" wx:for-item="item">
       <view class='commentsArea'>
-        <view class='leftArea'><image src='{{item.userInfo.headimgurl}}' class='leftUserIcon'></image></view> 
-        <!-- <view class='leftArea'><image src='{{item.avatarUrl}}' class='leftUserIcon'></image></view> -->
+        <view class='leftArea'><image src='{{item.userinfo.headimgurl}}' class='leftUserIcon'></image></view> 
+        
         <view class='rightArea'>
           <view class='commentInfo'><text class='userName'>{{item.userinfo.nickname}}</text> <text class='dataTime'>{{item.create_time}}</text></view>
           <view class='commentInfoWord'>{{item.comment}}</view>

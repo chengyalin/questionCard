@@ -11,10 +11,23 @@ Page({
     /**
    * 页面的跳转
    */
-  jumpToWorkOne: function () {
-    wx.navigateTo({
-      url: '../workOne/workOne'
-    })
+  bindgetuserinfo: function (e) {
+    console.log(e.detail)
+    console.log(e.detail.userInfo)
+    let openid = app.globalData.openid;
+    app.globalData.userInfo = e.detail.userInfo;
+    if (app.globalData.userInfo){
+      app.userRegister(openid, app.globalData.userInfo)
+      wx.navigateTo({
+        url: '../workOne/workOne'
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '授权失败，请重新授权或重启小程序',
+        showCancel: false,
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

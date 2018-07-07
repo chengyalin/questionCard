@@ -4,12 +4,11 @@
 <!-- <view class='canvasBox'> -->
 <canvas canvas-id="shareImg" style="width:100%;height:100%;"></canvas>
 
- <button class='shareFriendBtn' id="shareBtn" open-type="share" ></button>
-
+ <button class='shareFriendBtn' open-type="share" ></button>
  <!-- 分享不能绑在图片上，不生效，于是将按钮遮盖图片，视觉就是分享按钮的图 -->
   <image src='/images/shareFriend.png' class='shareFriend'></image> 
 
-
-  <image src='/images/saveCamera.png' class='saveImg' bindtap='save'></image>
+  <button class='saveImgBtn' open-type="openSetting" bindopensetting='handleSetting' hidden='{{openSettingHidden}}'>去授权</button>
+  <image src='/images/saveCamera.png' class='saveImg' bindtap='save' hidden='{{saveImgHandleHidden}}'></image>
 <!-- </view> -->
 

@@ -65,6 +65,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //真实user_id
+    let user_id = app.globalData.user_id;
+    console.log('userid'+user_id)
     let popupBoxShow = app.globalData.popupBoxShow;//弹出框显示与否
     console.log(popupBoxShow)
     if (popupBoxShow === true) {

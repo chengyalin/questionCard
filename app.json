@@ -1,17 +1,14 @@
 {
   "pages": [
-        "pages/writeInfo/writeInfo",
-        "pages/myScoreCard/myScoreCard",
 
+    "pages/home/home",
+
+    "pages/writeInfo/writeInfo",
+    "pages/myScoreCard/myScoreCard",
     "pages/myScore/myScore",
     "pages/myScoreCheck/myScoreCheck",
 
 
-
-    "pages/home/home",
-
-
-   
 
     "pages/collection/collection",
     "pages/collectionDetail/collectionDetail",
