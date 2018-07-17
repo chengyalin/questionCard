@@ -52,13 +52,16 @@ Page({
     let that = this;
     let index = parseInt(options.index);
     let totalCount = options.totalCount;
-    let logList = wx.getStorageSync("logList");//从缓存中取
+    let logList = wx.getStorageSync("logList");//从缓存中取,而這個數據在後台返回的
+    console.log("logList:" + logList)
     let questionInfo = logList[index].question_info;
     let userChoice = logList[index].you_choice;
     // 测试数据
     // logList[index].question_info['question_type'] = 2;
     let questionType = logList[index].question_info.question_type;
     let rightAnswer = questionInfo.answer;
+    // let userOptions = rightAnswer.split('');//判断多选
+    // console.log("userOptions:" + userOptions)//判断多选
     let question_id = logList[index].question_id;
 
     that.setData({
@@ -71,6 +74,7 @@ Page({
       question_id: question_id
     })
 
+    // that.displayRightAnswerStyle(userOptions);
     that.getCommentsList();
   },
 
@@ -97,12 +101,38 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: function (res) {
+        console.log(res.data)
         console.log(res.data.data)
         that.setData({ commentsList: res.data.data })
       }
     })
     
   },
+
+  // displayRightAnswerStyle: function (userOptions){
+  //   let that = this;
+  //   for (let i = 0; i < userOptions.length;i++){
+  //     let answerStr = userOptions[i];
+  //     console.log("answerStr:" + answerStr)
+  //     if (answerStr === "A"){
+  //       that.setData({
+  //         rightAnswer: 'A',
+  //       })
+  //     } else if (answerStr === "B"){
+  //       that.setData({
+  //         rightAnswer: 'B',
+  //       })
+  //     } else if (answerStr === "C") {
+  //       that.setData({
+  //         rightAnswer: 'C',
+  //       })
+  //     } else {
+  //       that.setData({
+  //         rightAnswer: 'D',
+  //       })
+  //     }
+  //   }
+  // },
 
   //通过bindinput事件获取用户输入的评论，并保存至data中
   getUserCommentContent: function (e) {
@@ -194,7 +224,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {//注释后就去掉了转发导航
 
-  }
+  // }
 })

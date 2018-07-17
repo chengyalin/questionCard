@@ -7,21 +7,35 @@ Page({
    */
   data: {
     workList: [],
-    popupBoxShow: false
+    popupBoxShow: true,
+   
   },
 
-  popupCancel: function () {//弹窗点击未准备好
-    wx.navigateTo({
-      url: '../home/home'
+  // popupCancel: function () {//弹窗点击未准备好
+  //   wx.navigateTo({
+  //     url: '../home/home'
+  //   })
+  // },
+
+  // jumpToStart: function () {//弹窗点击确认开始
+  //   let popupBoxShow = this.data.popupBoxShow;
+  //   app.globalData.popupBoxShow = true;
+  //   console.log(popupBoxShow)
+  //   this.setData({
+  //     popupBoxShow: app.globalData.popupBoxShow
+  //   })
+  // },
+  popupBoxShowClick:function (e){//点击列表出现弹框
+    let confirmDialogId = e.currentTarget.dataset.id;
+    this.setData({
+      popupBoxShow: false,
+      confirmDialogId: confirmDialogId
     })
   },
 
-  jumpToStart: function () {//弹窗点击确认开始
-    let popupBoxShow = this.data.popupBoxShow;
-    app.globalData.popupBoxShow = true;
-    console.log(popupBoxShow)
+  popupCancel: function () {//弹窗点击未准备好
     this.setData({
-      popupBoxShow: app.globalData.popupBoxShow
+      popupBoxShow: true
     })
   },
 
@@ -35,6 +49,13 @@ Page({
     wx.navigateTo({
       url: '../question/question?section_id=' + section_id
     })
+    this.setData({
+      popupBoxShow: true
+    })
+
+    //清缓存
+    wx.removeStorage({ key: 'data' });
+    wx.removeStorage({ key: 'questionStatus' + section_id });
   },
   /**
   * 页面的跳转单元
@@ -68,13 +89,13 @@ Page({
     //真实user_id
     let user_id = app.globalData.user_id;
     console.log('userid'+user_id)
-    let popupBoxShow = app.globalData.popupBoxShow;//弹出框显示与否
-    console.log(popupBoxShow)
-    if (popupBoxShow === true) {
-      this.setData({
-        popupBoxShow: true
-      })
-    }
+    // let popupBoxShow = app.globalData.popupBoxShow;//弹出框显示与否
+    // console.log(popupBoxShow)
+    // if (popupBoxShow === true) {
+    //   this.setData({
+    //     popupBoxShow: true
+    //   })
+    // }
     var that = this
     wx.request({
       url: app.baseUrl + '/bank/section/list/', //接口地址
@@ -86,9 +107,11 @@ Page({
       },
       success: function (res) {
         console.log(res.data)
-        that.setData({ workList: res.data.data })
+        that.setData({ workList: res.data.data})
       }
     })
+
+    
     // wx.showToast({
     //   title: '加载中',
     //   icon: 'loading',
@@ -141,7 +164,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {//注释后就去掉了转发导航
 
-  }
+  // }
 })

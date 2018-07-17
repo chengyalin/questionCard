@@ -99,7 +99,7 @@ App({
 
   globalData: {
     userInfo: null,
-    popupBoxShow: false,
+    //popupBoxShow: false,
     openid: ''
   },
 

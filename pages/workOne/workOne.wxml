@@ -1,7 +1,7 @@
 <!--pages/workOne/workOne.wxml-->
 <view class='containerBox'>
   <view class='workMain'>
-    <view class='questionBox' bindtap="jumpToQuestion" data-id='{{item.section_id}}' wx:for="{{workList}}" wx:key="workList" wx:for-index="index" wx:for-item="item">
+    <view class='questionBox' bindtap="popupBoxShowClick" data-id='{{item.section_id}}' wx:for="{{workList}}" wx:key="workList" wx:for-index="index" wx:for-item="item">
       <text class='name'>{{item.title}}</text>
       <text class='people'>{{item.count}}题 <text class='preTime'>预计{{item.time}}</text> </text>
     </view>
@@ -23,11 +23,11 @@
         <view class='popupMain'>
           <view class='popupTop'>
             <view class='popupTitle'>提示</view>
-            <view class='popupWord'>本题要求一次性做完，中途退出成绩作废，一共150题，预计用时1个小时。</view>
+            <view class='popupWord'>本题要求一次性做完，中途退出成绩作废，一共120~150题，预计用时1个小时。</view>
           </view>
           <view class='twoBtn'>
             <button class='leftBtn' bindtap='popupCancel'>未准备好</button>
-            <button class='rightBtn' bindtap='jumpToStart'>确认开始</button>
+            <button class='rightBtn' bindtap='jumpToQuestion' data-id='{{confirmDialogId}}'>确认开始</button>
           </view>
         </view>
     </view>  

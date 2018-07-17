@@ -23,7 +23,7 @@ Page({
     //真实user_id
     let user_id = app.globalData.user_id;
     //测试数据
-    //let user_id = 1;
+    //let user_id = 6;
     wx.request({
       url: app.baseUrl + '/bank/grade/query/',
       data: {
@@ -137,7 +137,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
-  }
+  // onShareAppMessage: function () {//注释后就去掉了转发导航
+
+  // }
 })

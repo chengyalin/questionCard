@@ -17,7 +17,7 @@
         <text class='chapterInfo'>{{item.section_title}}</text>
       </view>
       <view class='allWordInfo'>
-        <text class='rightWord'>得分{{handledScore[index]/chapterScoreData[index]}}分</text><text class='allWord'>/总题数{{chapterTotalCountData[index]}}题</text>
+        <text class='rightWord'>最高得分{{handledScore[index]}}分</text><text class='allWord'>/总题数{{chapterTotalCountData[index]}}题</text>
       </view>
       </view>
     </view>

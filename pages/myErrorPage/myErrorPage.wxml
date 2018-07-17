@@ -9,7 +9,7 @@
   <view class='myErrorPageBox'  hidden='{{logList == "" ? true : false}}' bindtap='jumpToMyErrorPageResult' data-totalCount='{{logList.length}}'>
     <view class='chapter'>{{title}}</view>
     <view class='questionList' wx:for='{{logList}}' wx:for-item='logList' wx:key='*this' wx:for-index='index' id='{{index}}'>
-      <text class='question' id='{{index}}'>{{logList.question_info.title}}</text>
+      <text class='question' id='{{index}}'>{{logList.question_id}}.{{logList.question_info.title}}</text>
     </view>
   </view>
 </view>

@@ -119,7 +119,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
-  }
+  // onShareAppMessage: function () {//注释后就去掉了转发导航
+
+  // }
 })

@@ -7,7 +7,7 @@ Page({
    */
   data: {
     userInfo: {},
-    popupBox:false,
+    popupBox:false,//跳转生成成绩单弹框
     avarageScore: '',
     resultComment: '',
   },
@@ -103,17 +103,25 @@ Page({
         console.log(res.data)
         console.log(res.data.data)
         let datas = res.data.data;
-        let scores = [];
-        for(let i=0; i<datas.length; i++){
-          let score = parseFloat(datas[i].value);
-          scores.push(score)
+        //测试数据
+        //let datas = 0;
+        if(datas == 0 || datas == null) {
+          that.setData({
+            avarageScore: 0
+          })
+        }else{
+          let scores = [];
+          for (let i = 0; i < datas.length; i++) {
+            let score = parseFloat(datas[i].value);
+            scores.push(score)
+          }
+          console.log("scores:" + scores)
+          let avarageScore = that.handleScores(scores);
+          console.log("avarageScore:" + avarageScore)
+          that.setData({
+            avarageScore: avarageScore
+          })
         }
-        console.log("scores:" + scores)
-        let avarageScore = that.handleScores(scores);
-        console.log("avarageScore:" + avarageScore)
-        that.setData({
-          avarageScore: avarageScore
-        })
       } 
     })
   },
@@ -175,7 +183,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
-  }
+  // onShareAppMessage: function () {//注释后就去掉了转发导航
+
+  // }
 })

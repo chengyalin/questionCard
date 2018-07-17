@@ -1,9 +1,17 @@
 <!--pages/home/home.wxml-->
   <view class='containerBox'>
     <view class='sureStarBox' >
-      <view class='pormpt'>提示</view>
-      <view class='warmTip'>你现在可以进行单元测试哦</view>
-      <button class='sureBtn' bindgetuserinfo="bindgetuserinfo" open-type='getUserInfo'>请先授权再测试</button>
+      <view class='pormpt'>温馨提示</view>
+      <view class='warmTip'>
+      1.此为心理咨询师基础班单元作业题；
+      </view>
+      <view  class='warmTip'>
+      2.每单元120题~150题不等，需花费您大约1小时时间；
+      </view >
+      <view  class='warmTip'>
+      3.单元成绩均达六十分以上，校方将自动记录您成绩合格，单元可重复作业，每次保留最高成绩；
+      </view>
+      <button class='sureBtn' bindgetuserinfo="bindgetuserinfo" open-type='getUserInfo'>开始测试</button>
     </view>
       <!-- 底部背景 -->
     <image class='bottombg' src='/images/bottombg.png'></image>

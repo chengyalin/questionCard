@@ -18,7 +18,7 @@ Page({
     }
     return {
       title: '答题卡小程序',
-      path: '/myScoreCard/myScoreCard',
+      path: '/home/home',
       imageUrl:'',
       success: function (res) {
         // 转发成功
@@ -63,6 +63,7 @@ Page({
         console.log(res.data.data)
         let datas = res.data.data;
         let avg = parseFloat(datas.avg).toFixed(2);
+        let schoolName = datas.school;
         console.log('avg:' +avg)
         switch (true) {
           case avg < 60:
@@ -87,15 +88,16 @@ Page({
           real_name: real_name,
           id_card: id_card,
           school_id: school_id,
+          schoolName: schoolName,
           winWidth: winWidth,
           winHeight: winHeight
         })
-        that.convasSaveImage(real_name, id_card, school_id);//坑，当时成绩获取不到，这行千万别放错位置
+        that.convasSaveImage(real_name, id_card, schoolName);//坑，当时成绩获取不到，这行千万别放错位置
       }
     })
   },
 
-  convasSaveImage: function (real_name, id_card, school_id){
+  convasSaveImage: function (real_name, id_card, schoolName){
     let that = this;
     //绘制canvas图
     let promise1 = new Promise(function (resolve, reject) {
@@ -136,7 +138,7 @@ Page({
       ctx.setFontSize(14)
       console.log("resultComment:" + that.data.resultComment)
       ctx.fillText('身份证号码：' + id_card, 50, ((that.data.winHeight) / 2) + 20)
-      ctx.fillText('培训学校：' + school_id, 50, ((that.data.winHeight) / 2) + 50)
+      ctx.fillText('培训学校：' + schoolName, 50, ((that.data.winHeight) / 2) + 50)
       ctx.fillText('成绩评定：' + that.data.resultComment, 50, ((that.data.winHeight) / 2) + 80)
 
       ctx.stroke()

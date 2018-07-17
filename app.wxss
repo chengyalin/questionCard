@@ -9,7 +9,7 @@
 }  */
 
 .containerBox {
-
+  padding-bottom: 100rpx;
 }
  /* page {display: block;min-height: 100%;background-color: #3686ff;}
 .bottombg{display: block;width: 630rpx;height: 233rpx;position: fixed;left: 0;bottom: 0;z-index: -1;} */
@@ -46,3 +46,5 @@
 .noDataState{}
 .noDataState .noStateImg{display: block; width: 400rpx;height: 400rpx;margin: 200rpx auto 0;}
 .noDataState .info{font-size: 38rpx;color: #adadad;text-align: center;height: 40rpx;line-height: 40rpx;}
+
+

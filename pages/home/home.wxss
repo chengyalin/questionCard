@@ -1,7 +1,7 @@
 /* pages/home/home.wxss */
-.sureStarBox{width: 550rpx; padding: 50rpx;background-color: #fff;border-radius: 6px;position: fixed;left: 50rpx; top:200rpx;}
+.sureStarBox{width: 550rpx; padding: 50rpx;background-color: #fff;border-radius: 6px;position: fixed;left: 50rpx; top:120rpx;}
 .pormpt{text-align: center;font-size: 40rpx;color: #000;font-weight: bold;height: 160rpx;line-height: 160rpx;}
-.warmTip{text-align: center;font-size: 30rpx;color: #adadad;line-height: 60rpx;}
+.warmTip{text-align: left;font-size: 30rpx;color: #adadad;line-height: 60rpx;}
 .sureBtn{margin: 50rpx auto;width: 300rpx;height: 90rpx;line-height: 90rpx;background-color: #3686ff;color: #fff;font-size: 34rpx;border-radius: 30px;}
 
  page {display: block;min-height: 100%;background-color: #3686ff;}

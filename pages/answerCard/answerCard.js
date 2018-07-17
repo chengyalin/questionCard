@@ -19,30 +19,40 @@ Page({
     //测试数据
     //let user_id = 1;
     let data = wx.getStorageSync("data");
-    // let finishedItems = that.calculateObjAttrLength(data);
-    let meta = wx.getStorageSync("metaName")
-    console.log(meta)
-    let totalCount = meta['total_count'];
-    console.log(meta.total_count)
-    wx.request({
-      url: app.baseUrl + '/bank/question/check/',
-      data: {
-        data: data,
-        user_id: user_id,
-        section_id: section_id
-      },
-      success: function (res) {
-        // 防止用户按返回键之后答题卡出现空白的情况，所以不能删除
-        // wx.removeStorageSync("questionStatus" + section_id)
-        that.setData({ popupBox: false });
-        console.log(res.data)
-        let userScore = res.data.data;
-        let section_id = that.data.section_id;
-        wx.navigateTo({
-          url: '../answerCardResult/answerCardResult?userScore=' + userScore + '&totalCount=' + totalCount + '&section_id=' + section_id,
-        })
-      }
-    })
+    if (data == '' || data == null){
+      wx.showToast({
+        title: '您还未答题！',
+        icon: 'none'
+      })
+    }else{
+      // let finishedItems = that.calculateObjAttrLength(data);
+      let meta = wx.getStorageSync("metaName")
+      console.log(meta)
+      let totalCount = meta['total_count'];
+      console.log(meta.total_count)
+      wx.request({
+        url: app.baseUrl + '/bank/question/check/',
+        data: {
+          data: data,
+          user_id: user_id,
+          section_id: section_id
+        },
+        success: function (res) {
+          // 防止用户按返回键之后答题卡出现空白的情况，所以不能删除
+          // wx.removeStorageSync("questionStatus" + section_id)
+          that.setData({ popupBox: false });
+          console.log(res.data)
+          let userScore = res.data.data;
+          let section_id = that.data.section_id;
+          wx.redirectTo({
+            url: '../answerCardResult/answerCardResult?userScore=' + userScore + '&totalCount=' + totalCount + '&section_id=' + section_id,
+          })
+        }
+      })
+      console.log('程亚林data' + data)
+      console.log('程亚林user_id' + user_id)
+      console.log('程亚林section_id' + section_id)
+    }
 
   },
 
@@ -50,7 +60,7 @@ Page({
     let that = this;
     let section_id = that.data.section_id;
     let questionNum = e.currentTarget.id;
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../question/question?page=' + questionNum + '&section_id=' + section_id,
     })
   },
@@ -114,7 +124,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {//注释后就去掉了转发导航
 
-  }
+  // }
 })

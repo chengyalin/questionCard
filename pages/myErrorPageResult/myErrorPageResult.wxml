@@ -8,29 +8,28 @@
 
   <view class='questionMain'>
     <view class='questionBox'>
-      <view class='question'>{{questionInfo.title}}</view>
-      <view class="answer {{rightAnswer == 'A' ? 'active' : ''}}">
+      <view class='question'>{{question_id}}.{{questionInfo.title}}</view>
+      <view class="answer {{rightAnswer[0] == 'A' ? 'active' : ''}}">
         <text class='choose'>{{A}}</text>
         <text class='chooseWord'>{{questionInfo.select_a}}</text>
       </view>
-      <view class="answer {{rightAnswer == 'B' ? 'active' : ''}}">
+      <view class="answer {{rightAnswer[0] == 'B' || rightAnswer[1] == 'B' ? 'active' : ''}}">
         <text class='choose'>{{B}}</text>
         <text class='chooseWord'>{{questionInfo.select_b}}</text>
       </view>
-      <view  class="answer {{rightAnswer == 'C' ? 'active' : ''}}">
+      <view  class="answer {{rightAnswer[0] == 'C' || rightAnswer[1] == 'C' || rightAnswer[2] == 'C' ? 'active' : ''}}">
         <text class='choose'>{{C}}</text>
         <text class='chooseWord'>{{questionInfo.select_c}}</text>
       </view>
-      <view class="answer {{rightAnswer == 'D' ? 'active' : ''}}">
+      <view class="answer {{rightAnswer[0] == 'D' || rightAnswer[1] == 'D' || rightAnswer[2] == 'D' || rightAnswer[3] == 'D' ? 'active' : ''}}">
         <text class='choose'>{{D}}</text>
         <text class='chooseWord'>{{questionInfo.select_d}}</text>
       </view>
+    </view>
       <view class='btnBox'>
         <text class='rightResult'>正确答案 <text class='rightChoose'>{{questionInfo.answer}}</text> </text>
         <text class='myResult'>您的答案 <text class='rightChooseF'>{{userChoice}}</text> </text>
       </view>
-    </view>
-    
   </view>
 
   <!-- 讨论区 -->

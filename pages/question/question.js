@@ -176,7 +176,7 @@ Page({
     let that = this;
     let section_id = that.data.section_id;
     //真实user_id
-    let user_id= app.globalData.user_id;
+    let user_id = app.globalData.user_id;
     //测试数据
     //let user_id = 1;
     let data = wx.getStorageSync("data");
@@ -192,13 +192,17 @@ Page({
       success: function (res) {
         wx.removeStorageSync("questionStatus" + section_id)
         that.setData({ popupBox: false });
-        console.log(res.data)
-        let userScore = res.data.data;
-        wx.navigateTo({
-          url: '../answerCardResult/answerCardResult?userScore=' + userScore + '&totalCount=' + totalCount,
+        console.log(res.data);
+        let userScore = res.data.data != undefined ? res.data.data : 0;
+        wx.redirectTo({
+          url: '../answerCardResult/answerCardResult?userScore=' + userScore + '&totalCount=' + totalCount + '&section_id=' + section_id,
         })
       }
+
     })
+    console.log('程亚林data' + data)
+    console.log('程亚林user_id' + user_id)
+    console.log('程亚林section_id' + section_id)
   },
 
 
@@ -239,6 +243,12 @@ Page({
     //先取到题目的id和题目是否完成的状态
     let titleNum = meta.page;
     let section_id = that.data.section_id;
+
+    //获取题目id
+    let objectQuestion = that.data.objList;
+    let questionid = objectQuestion.question_id;
+    console.log('题目id是:' + questionid);
+
     // let section_id = 3;
     if (optionSelectedStatus.selectedAAnswer ||
       optionSelectedStatus.selectedBAnswer ||
@@ -250,7 +260,7 @@ Page({
       //将用户的答题情况存进wx.setStorageSync中，并以section_id区分
       wx.setStorageSync("questionStatus" + section_id, questionStatus)
 
-      that.handleUserSingleAnswer(optionSelectedStatus, titleNum);
+      that.handleUserSingleAnswer(optionSelectedStatus, questionid);
     }
     let next = meta.next;
     if (next === null) {
@@ -264,26 +274,30 @@ Page({
     }
   },
 
-  handleUserSingleAnswer: function (optionSelectedStatus, titleNum) {
+  handleUserSingleAnswer: function (optionSelectedStatus, questionid) {//处理单选多选
     let that = this;
     let data = wx.getStorageSync("data");
     if (!data) {
       data = {};
     }
-    let key = titleNum;
-    let value;
+    let key = questionid;
+    let value = '';
     if (optionSelectedStatus.selectedAAnswer) {
-      value = "A";
-    } else if (optionSelectedStatus.selectedBAnswer) {
-      value = "B";
-    } else if (optionSelectedStatus.selectedCAnswer) {
-      value = "C";
-    } else {
-      value = "D";
+      value += "A";
+    }
+    if (optionSelectedStatus.selectedBAnswer) {
+      value += "B";
+    }
+    if (optionSelectedStatus.selectedCAnswer) {
+      value += "C";
+    }
+    if (optionSelectedStatus.selectedDAnswer) {
+      value += "D";
     }
     data[key] = value;
+    // 这里存储的是用户答题情况，以题目的题号作为属性（key），以选项的ABCD作为值（value）
     wx.setStorageSync("data", data);
-    console.log("data:" + data);
+    console.log("存题答案data:" + data);
   },
 
   /**
@@ -294,7 +308,7 @@ Page({
     // let questionStatus = that.data.questionStatus;
     let section_id = that.data.section_id;
     // let section_id = 3;
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../answerCard/answerCard?section_id=' + section_id,
     })
   },
@@ -343,7 +357,7 @@ Page({
           meta: meta,
           objectList: objectList
         })
-        wx.setStorageSync('metaName',meta)
+        wx.setStorageSync('metaName', meta)
         for (let i = 0; i < objectList.length; i++) {
           let objList = objectList[i];
           // 测试question_type=2时的数据
@@ -353,12 +367,14 @@ Page({
           })
         }
         that.isQuestionCollected(meta, objectList, section_id);
+
         /*
-        这里坑大了，因为wx.request是异步请求，在执行请求的时候，js不会继续等待后台响应，
+        这里坑大了，因为w x.request是异步请求，在执行请求的时候，js不会继续等待后台响应，
         而是继续执行下面的代码，所以会出现，后面的代码先执行，然后数据才回来的现象，
         所以，这里为了能立刻得到questionStatus的值，所以在success里面利用回调的形式获取
         */
         that.isQuestionFinished(meta, section_id);
+        that.answersShow(that.data.objList.question_id);
       }
     })
   },
@@ -465,6 +481,32 @@ Page({
       }
     })
   },
+  //保存每项点击上一题选择abcd变蓝色的状态
+  answersShow: function (question_id) {
+    console.log(question_id);
+    let that = this;
+    let data = wx.getStorageSync('data');
+    if (data.hasOwnProperty(question_id)) {
+      let answers = data[question_id];
+      for (let answer of answers) {
+        switch (answer) {
+          case 'A':
+            that.setData({ selectedAAnswer: true });
+            break;
+          case 'B':
+            that.setData({ selectedBAnswer: true });
+            break;
+          case 'C':
+            that.setData({ selectedCAnswer: true });
+            break;
+          case 'D':
+            that.setData({ selectedDAnswer: true });
+            break;
+        }
+      }
+
+    }
+  },
 
   handleCollection: function (collectionList, objectList) {
     let that = this;
@@ -552,7 +594,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  // onShareAppMessage: function () {//注释后就去掉了转发导航
 
-  }
+  // }
 })
